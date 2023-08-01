@@ -15,6 +15,8 @@ struct CinemaAndTimeSlotsItem: View {
     @State var isSeparatorShown: Bool = true
     var cinema: CinemaVO?
     var count: Int?
+    var timeSlotCount: Int?
+    
     @Binding var slotID: Int
     
     var body: some View {
@@ -46,7 +48,7 @@ struct CinemaAndTimeSlotsItem: View {
                 if timeSlotExpanding {
                         VStack(alignment: .leading, spacing: 0) {
                             
-                            TimeSlotsView(data: cinema?.timeSlots, slotID: $slotID)
+                            TimeSlotsView(data: cinema?.timeSlots, timeSlotCount: timeSlotCount, slotID: $slotID)
                            
                             // Longpress hint
                             LongPressHintView()
@@ -75,6 +77,7 @@ struct CinemaAndTimeSlotsItem: View {
         }
         .background(Color(BG_COLOR))
         .onAppear(){
+            print("cinemaList ")
             print(cinema?.cinemaId ?? 0)
             print(count ?? 0)
             let countReceive = Int(count ?? 0)
@@ -133,35 +136,23 @@ struct CinemaFacilitiesListView: View {
 struct TimeSlotItemView: View {
     
     var timeSlot: Timeslot?
+    var timeSlotCount: Int?
     @State var bgColor : String? = nil
     @State var borderColor: String? = nil
     @State var status : Int = 0
-    // almost full ==> TIME_COLOR_PINK, borderColor: PINK_COLOR
-    // filling_fast ===> bgColor: TIME_COLOR_ORANGE, borderColor: NEW_ORANGE_COLOR
-    // available ===> bgColor: TIME_COLOR_GREEN, borderColor: GREEN_LIGHT_COLOR
-    
+  
     var body: some View {
         ZStack{
-//            Color(bgColor ?? "")
             
             VStack(alignment: .center, spacing: MARGIN_SMALL) {
                 Text(timeSlot?.startTime ?? "")
                     .font(.system(size: MARGIN_HALF_LARGE))
                 
-                Text("2D")
-                    .font(.system(size: MARGIN_CARD_MEDIUM_2))
                 
-                Text("Screen \(status)")
+                Text("\(String(describing: timeSlot?.status))")
                     .font(.system(size: MARGIN_CARD_MEDIUM_2))
-                    .onAppear(){
-                        self.status = Int(timeSlot?.status ?? 0)
-                    }
-                if borderColor != GREEN_LIGHT_COLOR {
-                    
-                    Text("21 Available")
-                        .font(.system(size: MARGIN_CARD_MEDIUM_2))
-                }
-               
+                   
+              
             }
             .foregroundColor(Color.white)
             .fontWeight(.medium)
@@ -171,6 +162,7 @@ struct TimeSlotItemView: View {
         .background(Color(bgColor ?? ""))
         .overlay(RoundedRectangle(cornerRadius: MARGIN_SMALL).stroke(Color(borderColor ?? ""), lineWidth: 1))
         .onAppear(){
+            print("Time Slot Count \(timeSlotCount ?? 0)")
             if (timeSlot?.status == 1) {
                 bgColor = TIME_COLOR_PINK
                 borderColor = PINK_COLOR
@@ -207,6 +199,7 @@ struct TimeSlotsView: View {
 
     let columns = [GridItem(.flexible()), GridItem(.flexible()),GridItem(.flexible())]
     var data : [Timeslot]?
+    var timeSlotCount: Int?
     @Binding var slotID: Int
 // almost full ==> TIME_COLOR_PINK, borderColor: PINK_COLOR
     // filling_fast ===> bgColor: TIME_COLOR_ORANGE, borderColor: NEW_ORANGE_COLOR
@@ -220,9 +213,7 @@ struct TimeSlotsView: View {
             LazyVGrid(columns: columns) {
                 ForEach(data ?? [], id: \.cinemaDayTimeslotID) { timeslot in
                     // time slot item
-//                    NavigationLink(value: timeslot) {
-                        TimeSlotItemView(timeSlot: timeslot)
-//                    }
+                        TimeSlotItemView(timeSlot: timeslot, timeSlotCount: timeSlotCount)
                     .buttonStyle(.plain)
                     .onTapGesture {
                         self.slotID = timeslot.cinemaDayTimeslotID ?? 0

@@ -22,7 +22,7 @@ protocol MovieDataAgent {
     func getCinemaAndTimeSlotRecord(token: String, date: String, onSuccess: @escaping ([CinemaVO]) -> Void, onFailure: @escaping (String) -> Void)
     
     // Get seating plan by showtime
-    func getSeatingPlanByShowTime(token: String, timeSlotID: Int, date: String, onSuccess: @escaping ([[CinemaSeatVO]]) -> Void, onFailure: @escaping (String) -> Void)
+    func getSeatingPlanByShowTime(token: String, timeSlotID: Int, date: String, onSuccess: @escaping ([CinemaSeatVO]) -> Void, onFailure: @escaping (String) -> Void)
     
     // Get Snack Categories
     func getSnackCategories(token: String, onSuccess: @escaping ([SnackCategoryVO]) -> Void, onFailure: @escaping (String) -> Void)

@@ -22,7 +22,7 @@ protocol MovieModel {
     func getCinemaAndTimeSlotRecord(date: String, onSuccess: @escaping ([CinemaVO]) -> Void, onFailure: @escaping (String) -> Void)
     
     // Get seating plan by showtime
-    func getSeatingPlanByShowTime(timeSlotID: Int, date: String, onSuccess: @escaping ([[CinemaSeatVO]]) -> Void, onFailure: @escaping (String) -> Void)
+    func getSeatingPlanByShowTime(timeSlotID: Int, date: String, onSuccess: @escaping ([CinemaSeatVO]) -> Void, onFailure: @escaping (String) -> Void)
     
     // Get Snack Categories
     func getSnackCategories(onSuccess: @escaping ([SnackCategoryVO]) -> Void, onFailure: @escaping (String) -> Void)

@@ -14,6 +14,7 @@ struct SnackDetailsVO: Codable {
     var price: Int?
     var categoryID: Int?
     var image: String?
+    var selectCount: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -22,5 +23,9 @@ struct SnackDetailsVO: Codable {
         case price
         case categoryID = "category_id"
         case image
+    }
+    
+    func getSnackImageUrl() -> String {
+        return "\(image ?? "")"
     }
 }

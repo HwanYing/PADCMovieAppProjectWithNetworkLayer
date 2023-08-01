@@ -31,6 +31,9 @@ let movieSectionData = [
     MovieSectionVO(id: 2, sectionName: COMING_SOON_MOVIE, isSelected: false)
 ]
 
+let allSnackDataCategory = [
+    SnackCategoryVO(id: 0, title: "All", titleMM: "All", isActive: 1, createdAt: "", updatedAt: "", isSelected: true)
+]
 // Movie Info List
 //let dummyMovieInfo = [
 //    MovieInfoVO(id: 1, movieName: "Black Widow", rating: "7.1", releaseDate: "May 8th, 2022", duration: "2hr 15min", castName: "Katty", moviePoster: "blackwidow", genre: ["Action","Adventure","Drama","Animation"], castImage: "blackwidow"),

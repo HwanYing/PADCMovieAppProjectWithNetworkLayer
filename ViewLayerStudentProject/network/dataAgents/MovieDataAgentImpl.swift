@@ -69,7 +69,7 @@ class MovieDataAgentImpl: MovieDataAgent {
 
     }
     
-    func getSeatingPlanByShowTime(token: String, timeSlotID: Int, date: String, onSuccess: @escaping ([[CinemaSeatVO]]) -> Void, onFailure: @escaping (String) -> Void) {
+    func getSeatingPlanByShowTime(token: String, timeSlotID: Int, date: String, onSuccess: @escaping ([CinemaSeatVO]) -> Void, onFailure: @escaping (String) -> Void) {
         let header: HTTPHeaders = [
             "Authorization": token
         ]
@@ -78,8 +78,8 @@ class MovieDataAgentImpl: MovieDataAgent {
             "booking_date": date
         ]
         fetchDataWithParamsAndHeader(forEndPoint: ENDPOINT_GET_SEATING_PLAN, method: .get, parameters: parameters, headers: header) { (response: SeatingPlanResponse) in
-//            onSuccess(Array(response.data!.joined()) )
-            onSuccess(response.data ?? [[CinemaSeatVO]]())
+            onSuccess(Array(response.data!.joined()) )
+//            onSuccess(response.data ?? [[CinemaSeatVO]]())
         } onFailure: { error in
             onFailure(error.localizedDescription)
         }

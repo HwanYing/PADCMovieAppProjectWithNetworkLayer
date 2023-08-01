@@ -37,6 +37,11 @@ struct CinemaSeatVO: Codable, Hashable {
     var symbol: String?
     var price: Int?
     
+    var uniqueId: String {
+        "\(id ?? 0)\(seatName ?? "")\(symbol ?? "")"
+    } // 1 A , 2 A, 3A-2A
+    var isSelected: Bool = false
+    
     enum CodingKeys: String, CodingKey {
         case id
         case type
@@ -45,7 +50,7 @@ struct CinemaSeatVO: Codable, Hashable {
         case price
     }
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(uniqueId)
     }
     static func == (lhs: CinemaSeatVO, rhs: CinemaSeatVO) -> Bool {
         return lhs.hashValue == rhs.hashValue

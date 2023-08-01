@@ -21,6 +21,7 @@ struct TimeSlotScreenView: View {
     @State var isTimeSlotClick: Bool = false
     @State var dateArray: [DateVO]? = dummyDateData
     @State var slotID: Int = 0
+    @State var timeSlotCount : Int = 0
     
     var body: some View {
         ZStack{
@@ -40,6 +41,7 @@ struct TimeSlotScreenView: View {
                             return DateVO(date: dateVO.date, isSelected: false)
                         }
                     })
+                    print("Date Selected \(dateSelected)")
                     self.requestData(date1: dateSelected)
                 }
                 .padding(.top, MARGIN_XLARGE)
@@ -53,18 +55,9 @@ struct TimeSlotScreenView: View {
                 TimeSlotColorsView()
                     .padding(.top, MARGIN_LARGE)
                 
-                if (cinemaList?.isEmpty ?? true) {
-                    EmptyView()
-                } else {
+               
                     // TimeSlots and hint section
-                    ScrollView(.vertical) {
-                        ForEach(cinemaList ?? [], id: \.cinemaId) { Item in
-                            // Time slot item
-                            CinemaAndTimeSlotsItem(cinema: Item, count: cinemaList?.count, slotID: $slotID)
-                            
-                        }
-                    }
-                }
+                CinemaListView(cinemaList: cinemaList, slotID: $slotID, timeSlotCount: timeSlotCount)
             }
             .padding(.top, MARGIN_XBIG - MARGIN_MEDIUM)
 //            .navigationDestination(for: Timeslot.self) { slot in
@@ -80,10 +73,11 @@ struct TimeSlotScreenView: View {
             
            requestData(date1: date)
         }
-        .onChange(of: self.selectDate) { newValue in
-            print("Selected Date ===> \(newValue)")
-            print("slot id ==> \(self.slotID)")
-        }
+//        .onChange(of: self.selectDate) { newValue in
+//            print("Selected Date ===> \(newValue)")
+//            print("slot id ==> \(self.slotID)")
+//
+//        }
         .onChange(of: self.slotID) { newValue in
             print("Slot \(newValue)")
             self.isTimeSlotClick = true
@@ -95,9 +89,21 @@ struct TimeSlotScreenView: View {
     func requestData(date1: Date) {
         
         let computedDate = self.computeDatetoCorrectDate(date: date1)
+        print("Computed Date \(computedDate)")
         
         mModel.getCinemaAndTimeSlotRecord(date: computedDate) { list in
+            
+            self.cinemaList = nil
+
+            let result = list.map({ cinema in
+                cinema.timeSlots?.map({ timeslot in
+                    timeslot.cinemaDayTimeslotID
+                })
+            })
+            print(result)
+            self.timeSlotCount += 1
             self.cinemaList = list
+           
         } onFailure: { error in
             debugPrint(error)
         }
@@ -113,8 +119,11 @@ struct TimeSlotScreenView: View {
         let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
         let year = components.year ?? 0
         let month = components.month ?? 0
+        
         let day = components.day ?? 0
-        let computedDate = "\(year)-\(month)-\(day)"
+        let monthString = (month<10 ? "0\(month)" : "\(month)")
+        let dayString = (day<10 ? "0\(day)" : "\(day)")
+        let computedDate = "\(year)-\(monthString)-\(dayString)"
     
         print(computedDate)
         return computedDate
@@ -258,6 +267,23 @@ struct TimeSlotColorItemView: View {
             Text(text)
                 .foregroundColor(Color(color))
                 .font(.system(size: MARGIN_MEDIUM_2))
+        }
+    }
+}
+
+struct CinemaListView: View {
+    
+    var cinemaList: [CinemaVO]?
+    @Binding var slotID: Int
+    var timeSlotCount: Int?
+    
+    var body: some View {
+        ScrollView(.vertical) {
+            ForEach(cinemaList ?? [], id: \.cinemaId) { Item in
+                // Time slot item
+                CinemaAndTimeSlotsItem(cinema: Item, count: cinemaList?.count, timeSlotCount: timeSlotCount,  slotID: $slotID)
+                
+            }
         }
     }
 }

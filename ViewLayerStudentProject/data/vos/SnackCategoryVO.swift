@@ -15,7 +15,7 @@ struct SnackCategoryVO: Codable, Hashable {
     var isActive: Int?
     var createdAt: String?
     var updatedAt: String?
-    var isSelected: Bool?
+    var isSelected: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case id

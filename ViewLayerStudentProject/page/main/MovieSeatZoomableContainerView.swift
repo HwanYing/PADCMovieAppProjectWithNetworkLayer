@@ -12,7 +12,7 @@ struct MovieSeatZoomableContainerView: View {
     // Child View
     var view: AnyView? = nil
     var viewHeight: Double = 0.0
-    var seatName: [String]?
+    var seatId: [String]?
     var price: Int?
     @State private var zoomLevel: Double = 1.0
     @State private var offset: CGSize = .zero
@@ -52,11 +52,11 @@ struct MovieSeatZoomableContainerView: View {
                 .padding(.top, MARGIN_XLARGE)
             
             // Number of tickets, price and Buy Ticket Btn View
-            TicketPriceAndBuyTicketBtnView(seatName: seatName, price: price, isSelected: $isSelected)
+            TicketPriceAndBuyTicketBtnView(seatId: seatId, price: price, isSelected: $isSelected)
             
         }
         .onAppear(){
-            print("movie seat count \(seatName?.count ?? 0)")
+            print("movie seat count \(seatId?.count ?? 0)")
             print("movie seat price \(price ?? 0)")
         }
       
@@ -65,7 +65,7 @@ struct MovieSeatZoomableContainerView: View {
 
 struct MovieSeatZoomableContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieSeatZoomableContainerView(seatName: [""], price: 0, isSelected: .constant(false))
+        MovieSeatZoomableContainerView(seatId: [""], price: 0, isSelected: .constant(false))
             .background(Color(.black))
     }
 }
@@ -145,7 +145,7 @@ struct SliderView: View {
 // Number of tickets, price and Buy Ticket button
 struct TicketPriceAndBuyTicketBtnView: View {
     
-    var seatName: [String]?
+    var seatId: [String]?
     var price: Int?
     @State var count = 0
     @State var totalPrice = 0
@@ -191,10 +191,10 @@ struct TicketPriceAndBuyTicketBtnView: View {
         .padding(.top, MARGIN_XLARGE - 3)
         .padding([.leading, .trailing], MARGIN_XLARGE + MARGIN_SMALL)
         .onAppear(){
-            self.count = seatName?.count ?? 0
+            self.count = seatId?.count ?? 0
             self.totalPrice = price ?? 0
         }
-        .onChange(of: self.seatName) { newValue in
+        .onChange(of: self.seatId) { newValue in
             print("new count \(newValue?.count ?? 0)")
             self.count = newValue?.count ?? 0
         }

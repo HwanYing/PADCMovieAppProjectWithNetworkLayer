@@ -21,7 +21,7 @@ struct GrabABiteView: View {
     var seatName: [String]?
     var price: Int?
     var slotID: Int?
-    @State var categories: [SnackCategoryVO]? = nil
+    @State var categories: [SnackCategoryVO]? = allSnackDataCategory
     @State var snacks: [SnackDetailsVO]? = nil
     @State var token : String = ""
     @State var count: Int = 0
@@ -41,21 +41,45 @@ struct GrabABiteView: View {
                     }
                   
                     // SnackType section
-                    SnackTypeSectionView(categories: categories){ categoryId in
-                        categories = categories?.map({ selected in
+                    SnackTypeSectionView(categories: self.categories){ categoryId in
+                        print("Original categories \(categories ?? [])")
+                        let newCategories = categories?.map({ selected in
                             if selected.id == categoryId {
-                                let category = SnackCategoryVO(id: selected.id, title: selected.title, isSelected: true)
-                                print("is selected \(categoryId) \(selected.isSelected ?? false)")
-return category
+                                return SnackCategoryVO(id: categoryId, title: selected.title, titleMM: selected.titleMM, isActive: 1, createdAt: "", updatedAt: "", isSelected: true)
                             } else {
-                                return SnackCategoryVO(id: selected.id, title: selected.title, isSelected: false)
+                                return SnackCategoryVO(id: selected.id, title: selected.title, titleMM: selected.titleMM, isActive: 1, createdAt: "", updatedAt: "", isSelected: false)
                             }
                         })
-                        self.getSnacksByID(id: categoryId)
+                        self.categories = nil
+                        print(self.categories ?? [])
+                        self.categories = newCategories
+                        
+//                        snacks = snacks?.map({ iteratedSnack in
+//                            if (iteratedSnack.categoryID == categoryId) {
+//                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.desription, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iter    tedSnack.image)
+//                            } else {
+//                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: iteratedSnack.selectCount)
+//                            }
+//                        })
+//                        self.snacks = nil
+//                        print("Filter snack \(filterSnacks ?? [])")
+//                        self.snacks = filterSnacks
+//                        self.getSnacksByID(id: categoryId)
                     }
                     
                     // Snack Grid list section
-                    SnackGridView(snacks: snacks, count: $count, totalPrice: $totalPrice).padding(.top, MARGIN_MEDIUM_2)
+                    SnackGridView(snacks: snacks, count: $count, totalPrice: $totalPrice){ snackId, categoryId in
+                        let snackWithNewCount = snacks?.map({ iteratedSnack in
+                            if (iteratedSnack.id == snackId && iteratedSnack.categoryID == categoryId) {
+                                return SnackDetailsVO(id: snackId, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: categoryId, image: iteratedSnack.image, selectCount: count)
+                            } else {
+                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image)
+                            }
+                        })
+                        self.snacks = nil
+                        print(snackWithNewCount ?? [])
+                        self.snacks = snackWithNewCount
+                    }
                     
                 }
                 .padding(.top, FOOTER_PADDING)
@@ -92,7 +116,10 @@ return category
     }
     func requestData() {
         mModel.getSnackCategories() { categories in
-            self.categories = categories
+       
+            self.categories?.append(contentsOf: categories)
+            print(self.categories)
+            
         } onFailure: { error in
             debugPrint(error)
         }
@@ -158,7 +185,6 @@ struct SnackTypeSectionView: View {
     
     var categories: [SnackCategoryVO]?
     var onTapCategory: ((Int) -> Void)?
-    @State var isSelected: Bool = true
     
     var body: some View {
         if categories?.isEmpty ?? false {
@@ -166,38 +192,37 @@ struct SnackTypeSectionView: View {
         } else {
             ScrollView(.horizontal) {
                 HStack {
-                    VStack {
-                        Text( "ALL")
-                            .font(.system(size: MARGIN_MEDIUM_2))
-                            .foregroundColor(.white)
-                            .fontWeight(.bold)
-                            .padding([.leading, .trailing], MARGIN_MEDIUM)
-                        
-                        Rectangle()
-                            .fill(self.isSelected ? Color(PRIMARY_COLOR) : .clear)
-                            .frame(height: 3)
-                    }
-                    .onTapGesture {
-                        guard let onTapCategory = self.onTapCategory else { return }
-                        self.isSelected = true
-                        onTapCategory(0)
-                        
-                    }
+//                    VStack {
+//                        Text( "ALL")
+//                            .font(.system(size: MARGIN_MEDIUM_2))
+//                            .foregroundColor(.white)
+//                            .fontWeight(.bold)
+//                            .padding([.leading, .trailing], MARGIN_MEDIUM)
+//
+//                        Rectangle()
+//                            .fill(self.isSelected ? Color(PRIMARY_COLOR) : .clear)
+//                            .frame(height: 3)
+//                    }
+//                    .onTapGesture {
+//                        guard let onTapCategory = self.onTapCategory else { return }
+//                        self.isSelected = true
+//                        onTapCategory(0)
+//
+//                    }
                     ForEach(categories ?? [], id: \.id) { category in
                         VStack {
-                            Text(category.titleMM ?? "ALL")
+                            Text(category.titleMM ?? "")
                                 .font(.system(size: MARGIN_MEDIUM_2))
                                 .foregroundColor(.white)
                                 .fontWeight(.bold)
                                 .padding([.leading, .trailing], MARGIN_MEDIUM)
                             
                             Rectangle()
-                                .fill(category.isSelected ?? false ? Color(PRIMARY_COLOR) : .clear)
+                                .fill(category.isSelected ? Color(PRIMARY_COLOR) : .clear)
                                 .frame(height: 3)
                         }
                         .onTapGesture {
                             guard let onTapCategory = self.onTapCategory else { return }
-                            self.isSelected = false
                             onTapCategory(category.id ?? 0)
                             
                         }

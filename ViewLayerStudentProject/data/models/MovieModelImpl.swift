@@ -35,12 +35,13 @@ class MovieModelImpl: MovieModel {
     func getCinemaAndTimeSlotRecord(date: String, onSuccess: @escaping ([CinemaVO]) -> Void, onFailure: @escaping (String) -> Void){
         
         let token = self.mUserDao.getUserToken()
-
+print("Selected date set for get Data \(date)")
+        
         mDataAgent.getCinemaAndTimeSlotRecord(token: token, date: date, onSuccess: onSuccess, onFailure: onFailure)
     }
     
     // Get seating plan by showtime
-    func getSeatingPlanByShowTime(timeSlotID: Int, date: String, onSuccess: @escaping ([[CinemaSeatVO]]) -> Void, onFailure: @escaping (String) -> Void){
+    func getSeatingPlanByShowTime(timeSlotID: Int, date: String, onSuccess: @escaping ([CinemaSeatVO]) -> Void, onFailure: @escaping (String) -> Void){
         
         let token = self.mUserDao.getUserToken()
         
