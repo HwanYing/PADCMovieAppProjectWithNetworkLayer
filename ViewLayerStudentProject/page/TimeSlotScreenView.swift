@@ -16,8 +16,12 @@ struct TimeSlotScreenView: View {
     @State var date: Date = Date.now
     let now = Date.now
     @State var selectDate = Date.now
+    
     var movieId: Int?
     var cityName: String?
+    var movieName: String?
+    var posterImageLink: String?
+    
     @State var isTimeSlotClick: Bool = false
     @State var dateArray: [DateVO]? = dummyDateData
     @State var slotID: Int = 0
@@ -67,7 +71,7 @@ struct TimeSlotScreenView: View {
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarHidden(true)
         .fullScreenCover(isPresented: $isTimeSlotClick, content: {
-            SeatingPlanPageView(date: self.selectDate, slotId: self.slotID)
+            SeatingPlanPageView(date: self.selectDate, slotId: self.slotID, movieId: self.movieId, movieTitle: self.movieName, posterImageLink: self.posterImageLink)
         })
         .onAppear(){
             

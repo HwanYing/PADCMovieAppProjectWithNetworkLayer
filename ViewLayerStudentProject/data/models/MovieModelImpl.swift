@@ -63,4 +63,20 @@ print("Selected date set for get Data \(date)")
 
         mDataAgent.getSnackListByCategory(id: id, token: token, onSuccess: onSuccess, onFailure: onFailure)
     }
+    
+    // fetch checkout receipt
+    func fetchCheckOut(timeslotId: Int, seatNumber: [String], bookingDate: String, movieId: Int, cardId: Int, snacks: [SnackRequest], onSuccess: @escaping (CheckOutVO) -> Void, onFailure: @escaping (String) -> Void) {
+        
+        let token = self.mUserDao.getUserToken()
+
+        mDataAgent.fetchCheckOut(token: token, timeslotId: timeslotId, seatNumber: seatNumber, bookingDate: bookingDate, movieId: movieId, cardId: cardId, snacks: snacks, onSuccess: onSuccess, onFailure: onFailure)
+    }
+    
+    // get payment type
+    func getPaymentTypeList(onSuccess: @escaping ([PaymentTypeVO]) -> Void, onFailure: @escaping (String) -> Void) {
+        
+        let token = self.mUserDao.getUserToken()
+        
+        mDataAgent.getPaymentTypeList(token: token, onSuccess: onSuccess, onFailure: onFailure)
+    }
 }

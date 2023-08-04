@@ -9,17 +9,16 @@ import SwiftUI
 
 struct SnackCardView: View {
     
-    @State var addSnack = false
     var snackItems: SnackDetailsVO?
     @State var snackName: String = ""
     @State var price: Int = 0
-    @State var snackId: Int = 0
+    @State var itemCount: Int = 0
     
-    @Binding var count: Int
     @Binding var totalPrice: Int
-    
+    @Binding var totalCount: Int
+
     // snackId
-    var onAddSnack: ((Int, Int) -> Void)?
+    var onAddSnack: ((Int, Int, Int) -> Void)?
     
     var body: some View {
         ZStack{
@@ -48,19 +47,21 @@ struct SnackCardView: View {
                 
                 if (snackItems?.selectCount ?? 0 > 0) {
                     // Add snack item view
-                    AddItemSectionView(snackCount: $count, totalPrice: $totalPrice, itemPrice: $price )
-                        .onChange(of: count) { newValue in
-                            guard let onAddSnack = onAddSnack else { return }
-                            onAddSnack(snackItems?.id ?? 0, snackItems?.categoryID ?? 0)
+                    AddItemSectionView(count: $itemCount, totalPrice: $totalPrice, itemPrice: $price, totalCount: $totalCount, snackCount: snackItems?.selectCount ?? 0)
+                        .onChange(of: itemCount) { newValue in
+                                print("Receive Here count for this item \(newValue)")
+                                guard let onAddSnack = onAddSnack else { return }
+                                onAddSnack(snackItems?.id ?? 0, snackItems?.categoryID ?? 0, self.itemCount)
                         }
                         
                 } else {
                     Button(action: {
                         
-                        count = 1
+                        self.itemCount = 1
                         totalPrice += snackItems?.price ?? 0
+                        totalCount += 1
                         guard let onAddSnack = onAddSnack else { return }
-                        onAddSnack(snackItems?.id ?? 0, snackItems?.categoryID ?? 0)
+                        onAddSnack(snackItems?.id ?? 0, snackItems?.categoryID ?? 0, self.itemCount)
                         
                     }, label: {
                         Text(ADD_BTN_LABEL)
@@ -82,6 +83,7 @@ struct SnackCardView: View {
         .onAppear(){
             self.snackName = snackItems?.name ?? ""
             self.price = snackItems?.price ?? 0
+            self.itemCount = snackItems?.selectCount ?? 0
             print("Item price \(price)")
         }
     }
@@ -89,7 +91,7 @@ struct SnackCardView: View {
 
 struct SnackCardView_Previews: PreviewProvider {
     static var previews: some View {
-        SnackCardView(count: .constant(0), totalPrice: .constant(0))
+        SnackCardView(totalPrice: .constant(0), totalCount: .constant(0))
             .previewLayout(.fixed(width: SNACK_CARD_WIDTH, height: SNACK_CARD_HEIGHT))
     }
 }
@@ -97,10 +99,13 @@ struct SnackCardView_Previews: PreviewProvider {
 // Add snack item view
 struct AddItemSectionView: View {
     
-    @Binding var snackCount: Int
+    @Binding var count: Int
     @Binding var totalPrice: Int
     @Binding var itemPrice: Int
-
+    @Binding var totalCount: Int
+    
+    var snackCount: Int?
+    
     var body: some View {
         HStack{
             Spacer()
@@ -111,11 +116,12 @@ struct AddItemSectionView: View {
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .clipped()
                 .onTapGesture {
-                    self.snackCount += 1
+                    self.count += 1
                     self.totalPrice += self.itemPrice
+                    self.totalCount += 1
                 }
             
-            Text("\(snackCount)")
+            Text("\(snackCount ?? 0)")
                 .font(.system(size: MARGIN_MEDIUM_3))
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .fontWeight(.bold)
@@ -127,12 +133,14 @@ struct AddItemSectionView: View {
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .clipped()
                 .onTapGesture {
-                    if (self.snackCount > 1) {
-                        self.snackCount -= 1
+                    if (self.count > 1) {
+                        self.count -= 1
                         self.totalPrice -= self.itemPrice
+                        self.totalCount -= 1
                     } else {
-                        self.snackCount = 0
+                        self.count = 0
                         self.totalPrice = 0
+                        self.totalCount = 0
                     }
                 }
         }

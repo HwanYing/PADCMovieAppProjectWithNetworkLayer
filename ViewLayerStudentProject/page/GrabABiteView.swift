@@ -13,19 +13,34 @@ struct GrabABiteView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     let mModel: MovieModel = MovieModelImpl.shared
     let uModel: UserModel = UserModelImpl.shared
-    @State var itemCount = 1
+    @State var totalItemCount = 0
     //    @Binding var grabAbite: Bool
     @Environment(\.dismiss) var dismiss
     @State var filterSheet = false
     @State var image = IC_CHEV_DOWN
-    var seatName: [String]?
-    var price: Int?
-    var slotID: Int?
     @State var categories: [SnackCategoryVO]? = allSnackDataCategory
-    @State var snacks: [SnackDetailsVO]? = nil
+    @State var allSnacks: [SnackDetailsVO]? = nil
+    @State var snacksByType: [SnackDetailsVO]? = nil
+    
     @State var token : String = ""
-    @State var count: Int = 0
     @State var totalPrice: Int = 0
+    @State var categoryTab: Int = 0
+    // Bottom Sheet
+    @State var itemNames: [Int: String]? = [:]
+    @State var itemsCount: [Int: Int]? = [:]
+    @State var itemsPrice: [Int: Int]? = [:]
+    @State var snackId: [Int]? = []
+    
+    @State var goToCheckOut: Bool = false
+    
+    var timeslotId: Int?
+    var seatNumber: [String]?
+    var seatPrice: Int?
+    var totalSeatPrice: Int?
+    var bookingDate: String?
+    var movieId: Int?
+    var movieTitle: String?
+    var posterImageLink: String?
     
     var body: some View {
         ZStack {
@@ -54,63 +69,130 @@ struct GrabABiteView: View {
                         print(self.categories ?? [])
                         self.categories = newCategories
                         
-//                        snacks = snacks?.map({ iteratedSnack in
-//                            if (iteratedSnack.categoryID == categoryId) {
-//                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.desription, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iter    tedSnack.image)
-//                            } else {
-//                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: iteratedSnack.selectCount)
-//                            }
-//                        })
-//                        self.snacks = nil
-//                        print("Filter snack \(filterSnacks ?? [])")
-//                        self.snacks = filterSnacks
-//                        self.getSnacksByID(id: categoryId)
+                        self.snacksByType = allSnacks
+                        self.categoryTab = categoryId
+                        
+                        if (categoryId == 0) {
+                            self.snacksByType = allSnacks
+                        } else {
+                            snacksByType = snacksByType?.filter({
+                                $0.categoryID == categoryId
+                            })
+                        }
+                       
                     }
                     
                     // Snack Grid list section
-                    SnackGridView(snacks: snacks, count: $count, totalPrice: $totalPrice){ snackId, categoryId in
-                        let snackWithNewCount = snacks?.map({ iteratedSnack in
+                    SnackGridView(snacks: snacksByType, totalCount: $totalItemCount, totalPrice: $totalPrice){ snackId, categoryId, itemCount in
+                        let snackWithNewCount = allSnacks?.map({ iteratedSnack in
+                            
                             if (iteratedSnack.id == snackId && iteratedSnack.categoryID == categoryId) {
-                                return SnackDetailsVO(id: snackId, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: categoryId, image: iteratedSnack.image, selectCount: count)
+                                
+                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: itemCount)
+                                //  var unitPrice: Int?
+//                                var quantity: Int?
+//                                var totalPrice: Int?
                             } else {
-                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image)
+                                
+                                if (iteratedSnack.selectCount > 0 && iteratedSnack.id != snackId) {
+                                    
+                                    print("Iterated count \(iteratedSnack.selectCount)")
+                                    
+                                    return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: iteratedSnack.selectCount)
+                                    
+                                }
+                                
+                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: 0)
+                                
                             }
                         })
-                        self.snacks = nil
+                        self.snacksByType = nil
                         print(snackWithNewCount ?? [])
-                        self.snacks = snackWithNewCount
+                        self.allSnacks = snackWithNewCount
+
+                        if (self.categoryTab == 0) {
+                            self.snacksByType = allSnacks
+                        } else {
+                            snacksByType = snackWithNewCount?.filter({
+                                $0.categoryID == self.categoryTab
+                            })
+                        }
                     }
                     
                 }
                 .padding(.top, FOOTER_PADDING)
-                
-                // SNACK count bottom view
-                //                if filterSheet {
-                //                    FoodItemCountSheet()
-                //                        .onTapGesture {
-                //                            self.filterSheet.toggle()
-                //                        }
-                //                } else {
-//                NavigationLink(value: ViewOptionsRoute.checkout) {
-                    SnackCountBottomView(itemCount: $itemCount, image: IC_CHEV_DOWN, filterSheet: $filterSheet, totalPrice: $totalPrice)
-//                }
-                
-                //
-                //                }
-                
+                .onTapGesture {
+                    self.filterSheet.toggle()
+                }
+               
+                if !filterSheet {
+                    SnackCountBottomView(itemCount: $totalItemCount, image: IC_CHEV_DOWN, filterSheet: $filterSheet, totalPrice: $totalPrice, itemsCount: self.itemsCount)
+                        .frame(minHeight: 0, maxHeight: SNACK_ITEM_WIDTH)
+                        .onTapGesture {
+                            self.goToCheckOut = true
+                        }
+                    
+                } else {
+                    
+                    FoodItemCountSheet(totalCount: $totalItemCount, totalPrice: $totalPrice, filterSheet: $filterSheet, snacks: self.allSnacks) { snackId, categoryId, itemCount in
+                        let snackWithNewCount = allSnacks?.map({ iteratedSnack in
+                        
+                            
+                            if (iteratedSnack.id == snackId && iteratedSnack.categoryID == categoryId) {
+                                
+                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: itemCount)
+                                
+                            } else {
+                                
+                                if (iteratedSnack.selectCount > 0 && iteratedSnack.id != snackId) {
+                                    
+                                    print("Iterated count \(iteratedSnack.selectCount)")
+                                    
+                                    return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: iteratedSnack.selectCount)
+                                    
+                                }
+                                
+                                return SnackDetailsVO(id: iteratedSnack.id, name: iteratedSnack.name, description: iteratedSnack.description, price: iteratedSnack.price, categoryID: iteratedSnack.categoryID, image: iteratedSnack.image, selectCount: 0)
+                                
+                            }
+                        })
+                        self.snacksByType = nil
+                        print(snackWithNewCount ?? [])
+                        self.allSnacks = snackWithNewCount
+                   
+                        
+                        if (self.categoryTab == 0) {
+                            self.snacksByType = allSnacks
+                        } else {
+                            snacksByType = snackWithNewCount?.filter({
+                                $0.categoryID == self.categoryTab
+                            })
+                        }
+                    }
+
+                }
+               
             }
-            .sheet(isPresented: $filterSheet, content: {
-                FoodItemCountSheet()
-                
-            })
             .navigationBarBackButtonHidden(true)
             
         }
         .edgesIgnoringSafeArea([.top, .bottom])
+        .fullScreenCover(isPresented: $goToCheckOut, content: {
+//            CheckOutView()
+//            var timeslotId: Int?
+//            var seatNumber: [String]?
+//            var bookingDate: String?
+//            var movieId: Int?
+//            var snackList: SnackDetailsVO?
+//            var totalSeatPrice: Int?
+            PaymentPageVeiw(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.seatPrice, bookingDate: self.bookingDate, movieId: self.movieId, snackList: self.allSnacks, totalSeatPrice: self.totalSeatPrice, movieTitle: self.movieTitle, snackTotalPrice: self.totalPrice, posterImageLink: self.posterImageLink)
+        })
+//        .navigationDestination(isPresented: $goToCheckOut, destination: {
+//        })
         .onAppear(){
-            print("seat name ==> \(seatName ?? [])")
-            print("slot id ==> \(slotID ?? 0)")
-            print("Price ===> \(price ?? 0)")
+            print("seat name ==> \(seatNumber ?? [])")
+            print("slot id ==> \(timeslotId ?? 0)")
+            print("Price ===> \(totalSeatPrice ?? 0)")
             requestData()
         }
     }
@@ -118,7 +200,7 @@ struct GrabABiteView: View {
         mModel.getSnackCategories() { categories in
        
             self.categories?.append(contentsOf: categories)
-            print(self.categories)
+            print(self.categories ?? [])
             
         } onFailure: { error in
             debugPrint(error)
@@ -128,7 +210,8 @@ struct GrabABiteView: View {
     func getSnacksByID(id: Int){
         
         mModel.getSnackListByCategory(id: id) { snacks in
-            self.snacks = snacks
+            self.allSnacks = snacks
+            self.snacksByType = snacks
         } onFailure: { error in
             debugPrint(error)
         }
@@ -237,7 +320,7 @@ struct SnackTypeSectionView: View {
 
 struct ItemCountView: View {
     
-    @Binding var itemCount: Int
+    var itemCount: Int?
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center), content: {
@@ -247,7 +330,7 @@ struct ItemCountView: View {
                 .foregroundColor(.red)
             
             // Item count text
-            Text("\(itemCount)")
+            Text("\(itemCount ?? 0)")
                 .foregroundColor(.white)
                 .font(.system(size: MARGIN_MEDIUM))
             
@@ -257,7 +340,7 @@ struct ItemCountView: View {
 
 struct SnackItemShowView: View {
     
-    @Binding var itemCount: Int
+    var itemCount: Int?
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
@@ -266,7 +349,7 @@ struct SnackItemShowView: View {
                 .frame(width: MARGIN_LARGE + MARGIN_SMALL, height: GG_Size)
             
             // item count circle view
-            ItemCountView(itemCount: $itemCount)
+            ItemCountView(itemCount: itemCount)
                 .padding(.trailing, -MARGIN_MEDIUM)
             
         }
@@ -280,11 +363,13 @@ struct SnackCountBottomView: View {
     @Binding var filterSheet: Bool
     @Binding var totalPrice: Int
     
+    var itemsCount: [Int: Int]?
+
     var body: some View {
         VStack {
             HStack{
                 // Snack item count view
-                SnackItemShowView(itemCount: $itemCount)
+                SnackItemShowView(itemCount: itemCount)
                 
                 Image(systemName: image)
                     .resizable()
@@ -317,11 +402,18 @@ struct SnackCountBottomView: View {
             .padding([.leading, .trailing], MARGIN_MEDIUM_2)
             
         }
-        .frame(minHeight: 0, maxHeight: SNACK_ITEM_WIDTH)
         .background(Color(.black))
         .onAppear(){
             print("Total Price \(self.totalPrice)")
             print("Item count \(self.itemCount)")
+            
+//            getItemsWithCount()
         }
     }
+    
+//    func getItemsWithCount() {
+//        for data in itemsCount ?? [:]{
+//            self.itemCount = data.value
+//        }
+//    }
 }

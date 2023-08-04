@@ -9,12 +9,29 @@ import SwiftUI
 
 struct CheckOutView: View {
     
+    let mModel: MovieModel = MovieModelImpl.shared
+
     @State var ticketCount = 1
 
     @State var ticketPolicyShow = false
     @State var showPayment: Bool = false
     @Environment(\.dismiss) var dismiss
     @State var showBeverage: Bool = true
+    
+    @State var checkOutResult: CheckOutVO? = nil
+    @State var checkOutSuccess: Bool = false
+    
+    var timeslotId: Int?
+    var seatNumber: [String]?
+    var seatPrice: Int?
+    var bookingDate: String?
+    var movieId: Int?
+    var cardId: Int?
+    var snacks: [SnackRequest]?
+    var movieTitle: String?
+    var snackTotalPrice: Int?
+    var snackList: [SnackDetailsVO]?
+    var posterImagelink: String?
     
     var body: some View {
         ZStack {
@@ -32,29 +49,29 @@ struct CheckOutView: View {
                     // Check Info Section
                     VStack(alignment: .leading,spacing: 0.0) {
                         // MovieTitle section
-                        MovieTitleSectionView()
+                        MovieTitleSectionView(title: self.movieTitle)
                         
                         // cinema place, screen no.
-                        CinemaPlaceScreenView()
+                        CinemaPlaceScreenView(place: self.checkOutResult?.bookingNo)
                         
                         // Date, time , place
-                        DateTimePlaceCombineView()
+                        DateTimePlaceCombineView(date: checkOutResult?.bookingDate, startTime: checkOutResult?.timeslot?.startTime, place: checkOutResult?.bookingNo)
                         
                         // no of ticket
                         NumberOfTicketSectionView(ticketCount: ticketCount)
                         
                         // tiket info section
-                        TicketInfoSectionView()
+                        TicketInfoSectionView(ticketName: self.seatNumber?.first, ticketPrice: self.seatPrice)
                         
                         Divider()
                             .background(Color(SUB_TEXT_COLOR))
                             .padding(.top, MARGIN_MEDIUM_4)
                         
                         // food and beverage title
-                        FoodAndBeverageTitleView(showBeverage: $showBeverage)
+                        FoodAndBeverageTitleView(showBeverage: $showBeverage, totalPrice: self.snackTotalPrice)
                         
                         // food and beverage section
-                        FoodListView(expandBeverage: showBeverage)
+                        FoodListView(expandBeverage: showBeverage, snacks: self.snackList)
                         
                         VStack(alignment: .leading, spacing: 0.0) {
                             
@@ -72,7 +89,7 @@ struct CheckOutView: View {
                                 .padding(.top, MARGIN_XLARGE - 2)
                             
                             // Final Total section
-                            FinalTotalView()
+                            FinalTotalView(seatPrice: self.seatPrice, snackPrice: self.snackTotalPrice, fee: 5)
                         }
                         
                         
@@ -85,12 +102,12 @@ struct CheckOutView: View {
                     .cornerRadius(MARGIN_MEDIUM)
                     
                     // continue button
-                    NavigationLink(value: ViewOptionsRoute.payment) {
-                        
                         BottomFloatingBtnView(text: CONTINUE_BTN_LABEL)
                             .padding(.top, MARGIN_MEDIUM)
-                    }
-                    Spacer()
+                            .onTapGesture {
+                                self.checkOutSuccess = true
+                            }
+                        Spacer()
                 }
             }
             
@@ -98,8 +115,23 @@ struct CheckOutView: View {
             
         }
         .edgesIgnoringSafeArea([.top, .bottom])
-        
         .navigationBarBackButtonHidden(true)
+        .fullScreenCover(isPresented: $checkOutSuccess, content: {
+            TicketInformationConfirmView(movieTitle: self.movieTitle, place: checkOutResult?.bookingNo, ticketName: self.seatNumber?.first, date: self.bookingDate, startTime: checkOutResult?.timeslot?.startTime, posterImageLink: "")
+        })
+        .onAppear(){
+            print("Movie Title ===> \(self.movieTitle ?? "")")
+            requestData()
+        }
+    }
+    
+    func requestData() {
+        mModel.fetchCheckOut(timeslotId: self.timeslotId ?? 0, seatNumber: self.seatNumber ?? [], bookingDate: self.bookingDate ?? "", movieId: self.movieId ?? 0, cardId: self.cardId ?? 0, snacks: self.snacks ?? []) { result in
+            self.checkOutResult = result
+        } onFailure: { error in
+            print(error)
+        }
+
     }
 }
 
@@ -215,9 +247,12 @@ struct HalfCircleView1: View {
 }
 
 struct MovieTitleSectionView: View {
+    
+    var title: String?
+    
     var body: some View {
         HStack {
-            Text(MOVIE_TITLE)
+            Text(title ?? "")
                 .font(.system(size: MARGIN_MEDIUM_3))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -235,17 +270,20 @@ struct MovieTitleSectionView: View {
 }
 
 struct CinemaPlaceScreenView: View {
+    
+    var place: String?
+    
     var body: some View {
         HStack {
-            Text("JCGV: Junction City")
+            Text(place ?? "")
                 .font(.system(size: MARGIN_MEDIUM_2))
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .fontWeight(.semibold)
             
-            Text("(SCREEN 2)")
-                .font(.system(size: MARGIN_HALF_LARGE))
-                .fontWeight(.semibold)
-                .foregroundColor(Color(SUB_TEXT_COLOR))
+//            Text("(SCREEN 2)")
+//                .font(.system(size: MARGIN_HALF_LARGE))
+//                .fontWeight(.semibold)
+//                .foregroundColor(Color(SUB_TEXT_COLOR))
         }
         .padding(.top, MARGIN_MEDIUM_1)
     }
@@ -253,13 +291,17 @@ struct CinemaPlaceScreenView: View {
 
 struct DateTimePlaceCombineView: View {
     
+    var date: String?
+    var startTime: String?
+    var place: String?
+    
     var body: some View {
         HStack(alignment: .top, spacing: MARGIN_XLARGE - 2) {
-            DateTimePlaceSectionView(image: IC_CALENDAR_NORMAL, value: "Sun, 7 May, 2023", textSize: MARGIN_HALF_LARGE)
+            DateTimePlaceSectionView(image: IC_CALENDAR_NORMAL, value: date ?? "", textSize: MARGIN_HALF_LARGE)
             
-            DateTimePlaceSectionView(image: IC_CLOCK, value: "21:49 PM", textSize: MARGIN_HALF_LARGE)
+            DateTimePlaceSectionView(image: IC_CLOCK, value: startTime ?? "", textSize: MARGIN_HALF_LARGE)
             
-            DateTimePlaceSectionView(image: IC_LOCATION_UNFILL, value: "Q5H3+JPP,Corner of, Bogyoke Lann, Yangon", textSize: MARGIN_CARD_MEDIUM_2)
+            DateTimePlaceSectionView(image: IC_LOCATION_UNFILL, value: place ?? "", textSize: MARGIN_CARD_MEDIUM_2)
         }
         .padding(.top, MARGIN_XLARGE)
     }
@@ -285,11 +327,15 @@ struct NumberOfTicketSectionView: View {
 }
 
 struct TicketInfoSectionView: View {
+    
+    var ticketName: String?
+    var ticketPrice: Int?
+    
     var body: some View {
         HStack{
-            Text("Gold-G8,G7")
+            Text(ticketName ?? "")
             Spacer()
-            Text("20000Ks")
+            Text("\(ticketPrice ?? 0)Ks")
         }
         .font(.system(size: MARGIN_MEDIUM_2))
         .foregroundColor(.white)
@@ -302,6 +348,7 @@ struct FoodAndBeverageTitleView: View {
     
     @Binding var showBeverage: Bool
     @State var icon = IC_CHEV_UP
+    var totalPrice: Int?
     
     var body: some View {
         HStack {
@@ -325,7 +372,7 @@ struct FoodAndBeverageTitleView: View {
             
             Spacer()
             
-            Text("2000Ks")
+            Text("\(totalPrice ?? 0)Ks")
                 .font(.system(size: MARGIN_MEDIUM_2))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -337,13 +384,20 @@ struct FoodAndBeverageTitleView: View {
 struct FoodListView: View {
     
     var expandBeverage: Bool
+    var snacks: [SnackDetailsVO]?
     
     var body: some View {
         
         if expandBeverage {
             VStack(alignment: .leading, spacing: 0.0) {
-                FoodAndBeverageListView(foodName: "Potato Chips", qty: 1, price: 1000)
-                FoodAndBeverageListView(foodName: "Cocacola Large", qty: 1, price: 1000)
+                ForEach(snacks ?? [], id: \.id) { snack in
+                    if (snack.selectCount != 0) {
+                        FoodAndBeverageListView(foodName: snack.name ?? "", qty: snack.selectCount, price: snack.price ?? 0)
+                    }
+                   
+                }
+//                FoodAndBeverageListView(foodName: "Potato Chips", qty: 1, price: 1000)
+//                FoodAndBeverageListView(foodName: "Cocacola Large", qty: 1, price: 1000)
             }
             .padding(.top, MARGIN_MEDIUM)
         }
@@ -389,7 +443,7 @@ struct ConvenienceFeeTitleView: View {
             
             Spacer()
             
-            Text("500Ks")
+            Text("5Ks")
                 .font(.system(size: MARGIN_MEDIUM_2))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -426,6 +480,12 @@ struct TicketPolicySectionView: View {
 }
 
 struct FinalTotalView: View {
+    
+    var seatPrice: Int?
+    var snackPrice: Int?
+    var fee: Int?
+    @State var totalPrice: Int = 0
+    
     var body: some View {
         HStack{
             // Total label
@@ -434,12 +494,15 @@ struct FinalTotalView: View {
             Spacer()
             
             // Total Price
-            Text("22500Ks")
+            Text("\(totalPrice)Ks")
         }
         .font(.system(size: MARGIN_MEDIUM_3))
         .foregroundColor(Color(PRIMARY_COLOR))
         .fontWeight(.bold)
         .padding(.bottom, MARGIN_LARGE)
         .padding(.top, MARGIN_MEDIUM_3)
+        .onAppear(){
+            self.totalPrice = (seatPrice ?? 0) + (snackPrice ?? 0)  + (fee ?? 0)
+        }
     }
 }

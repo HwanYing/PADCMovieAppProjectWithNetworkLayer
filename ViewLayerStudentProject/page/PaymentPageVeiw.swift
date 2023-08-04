@@ -9,13 +9,33 @@ import SwiftUI
 
 struct PaymentPageVeiw: View {
     
+    let mModel: MovieModel = MovieModelImpl.shared
+
     @State var placeholder: String = "Enter Your Name"
     @State var text: String = ""
     @State var width = CGFloat.zero
     @State var labelWidth = CGFloat.zero
-//    let paymentList : [PaymentTypeVO] = paymentTypeData
+    
     @Environment(\.dismiss) var dismiss
-
+    
+    @State var paymentList: [PaymentTypeVO]? = nil
+    @State var isGoForCheckOut: Bool = false
+    @State var paymentTypeId: Int = 0
+    
+    var timeslotId: Int?
+    var seatNumber: [String]?
+    var seatPrice: Int?
+    var bookingDate: String?
+    var movieId: Int?
+    var snackList: [SnackDetailsVO]?
+    var totalSeatPrice: Int?
+    var movieTitle: String?
+    var snackTotalPrice: Int?
+    var posterImageLink: String?
+    
+    @State var snackRequests: [SnackRequest] = []
+    @State var snackPrice: [Int: Int] = [:]
+    
     var body: some View {
         ZStack {
             // background color
@@ -35,13 +55,43 @@ struct PaymentPageVeiw: View {
                     .padding(.top, MARGIN_XLARGE)
                 
                 // payment section
-                PaymentListSectionView()
+                PaymentListSectionView(paymentList: paymentList, isGoForCheckOut: $isGoForCheckOut, paymentTypeId: $paymentTypeId)
                 
                 Spacer()
             }
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarBackButtonHidden(true)
+        .fullScreenCover(isPresented: $isGoForCheckOut, content: {
+           
+            CheckOutView(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.seatPrice, bookingDate: self.bookingDate, movieId: self.movieId, cardId: self.paymentTypeId, snacks: self.snackRequests, movieTitle: self.movieTitle, snackTotalPrice: self.snackTotalPrice, snackList: self.snackList, posterImagelink: self.posterImageLink)
+        })
+        .onAppear(){
+            requestData()
+            createSnackRequest()
+        }
+    }
+    
+    func requestData() {
+        mModel.getPaymentTypeList { list in
+            self.paymentList = list
+        } onFailure: { error in
+            print(error)
+        }
+
+    }
+    
+    func createSnackRequest() {
+        
+       let selectedSnacks = snackList?.map({ snack in
+              
+           return SnackRequest(id: snack.id, quantity: snack.selectCount)
+           
+        })
+        self.snackRequests = selectedSnacks?.filter({
+            $0.quantity != 0
+        }) ?? []
+
     }
 }
 
@@ -162,17 +212,14 @@ struct OfferOrApplyBtnView: View {
 
 struct PaymentTypeView: View {
     
-    var paymentName: String
-    var image: String
+    var paymentItem: PaymentTypeVO?
     
     var body: some View {
         HStack{
-            Image(image)
-                .resizable()
-                .frame(width: MARGIN_XLARGE - 2, height: MARGIN_XLARGE - 2)
-                .padding(.leading, MARGIN_MEDIUM - 2)
+            // Image
+            PaymentImageView(imageUrl: paymentItem?.icon ?? "")
             
-            Text(paymentName)
+            Text(paymentItem?.title ?? "")
                 .foregroundColor(.white)
                 .font(.system(size: MARGIN_HALF_LARGE))
                 .fontWeight(.bold)
@@ -193,7 +240,9 @@ struct PaymentTypeView: View {
 
 struct PaymentListSectionView: View {
     
-//    var paymentList: [PaymentTypeVO]
+    var paymentList: [PaymentTypeVO]?
+    @Binding var isGoForCheckOut: Bool
+    @Binding var paymentTypeId: Int
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0.0) {
@@ -201,15 +250,44 @@ struct PaymentListSectionView: View {
                 .font(.system(size: MARGIN_MEDIUM_3))
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .fontWeight(.bold)
-//            ForEach(0..<paymentList.count, id: \.self) { i in
-//                NavigationLink(value: ViewOptionsRoute.paymentSuccess) {
-//                    PaymentTypeView(paymentName: paymentList[i].paymentType, image: paymentList[i].image)
-//                        .padding(.top, MARGIN_MEDIUM_1)
-//                }
-//
-//            }
+            ForEach(paymentList ?? [], id: \.id) { item in
+
+                PaymentTypeView(paymentItem: item)
+                        .padding(.top, MARGIN_MEDIUM_1)
+                        .onTapGesture {
+                            self.paymentTypeId = item.id ?? 0
+                            self.isGoForCheckOut = true
+                        }
+
+            }
         }
         .padding(.top, MARGIN_XLARGE)
         .padding([.leading, .trailing], MARGIN_MEDIUM_2)
+    }
+}
+
+struct PaymentImageView: View {
+    
+    var imageUrl: String = ""
+    
+    var body: some View {
+        AsyncImage(url: URL(string: imageUrl)){ phase in
+            switch phase {
+            case .empty:
+                ProgressView()
+            case .success(let image):
+                image
+                    .resizable()
+                    .frame(minWidth: 0, idealWidth: MARGIN_XLARGE - 2, maxWidth: MARGIN_XLARGE - 2, minHeight: 0, idealHeight: MARGIN_XLARGE - 2, maxHeight: MARGIN_XLARGE - 2)
+                    .clipped()
+                    .padding(.leading, MARGIN_MEDIUM - 2)
+
+            case .failure:
+                Image(systemName: "exclamationmark.icloud")
+            @unknown default:
+                EmptyView()
+            }
+        }
+        
     }
 }

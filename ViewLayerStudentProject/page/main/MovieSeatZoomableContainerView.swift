@@ -169,6 +169,7 @@ struct TicketPriceAndBuyTicketBtnView: View {
             
             // Buy Ticket Button
 //            NavigationLink(value: "Snack") {
+            if (self.count > 0) {
                 ZStack{
                     Image(TICKET_BACKGROUND)
                         .resizable()
@@ -185,6 +186,10 @@ struct TicketPriceAndBuyTicketBtnView: View {
                 .onTapGesture {
                     self.isSelected = true
                 }
+            } else {
+                TicketBookingBtnView(text: "Buy Ticket", seatSelectedOrNot: false)
+            }
+                
                
 //            }
         }
@@ -201,6 +206,45 @@ struct TicketPriceAndBuyTicketBtnView: View {
         .onChange(of: self.price) { newValue in
             print("total price \(newValue ?? 0)")
             self.totalPrice = newValue ?? 0
+        }
+    }
+}
+
+struct TicketBookingBtnView: View {
+    
+    var text: String
+    var seatSelectedOrNot: Bool
+    
+    var body: some View {
+        ZStack {
+            
+            Text(text)
+                .font(.system(size: MARGIN_MEDIUM_2))
+                .foregroundColor(.black)
+                .fontWeight(.bold)
+                .padding()
+                .frame(width: BOOKING_BTN_WIDTH - MARGIN_XBIG, height: MARGIN_XXLARGE)
+                .background(seatSelectedOrNot ? Color(PRIMARY_COLOR) : Color(.gray))
+                .cornerRadius(MARGIN_MEDIUM_1)
+            
+            HStack {
+                
+                Circle()
+                    .trim(from: 0, to: 0.5)
+                    .fill(Color(BG_COLOR))
+                    .frame(width: MARGIN_MEDIUM_4, height: MARGIN_MEDIUM_4)
+                    .rotationEffect(Angle(degrees: -CIRCLE_ROTATE_DEGREE))
+                    
+                Spacer()
+                
+                Circle()
+                    .trim(from: 0, to: 0.5)
+                    .fill(Color(BG_COLOR))
+                    .frame(width: MARGIN_MEDIUM_4, height: MARGIN_MEDIUM_4)
+                    .rotationEffect(Angle(degrees: CIRCLE_ROTATE_DEGREE))
+                    
+            }
+            .frame(width: BOOKING_BTN_WIDTH - MARGIN_XBIG + MARGIN_MEDIUM_4, height: MARGIN_XXLARGE)
         }
     }
 }

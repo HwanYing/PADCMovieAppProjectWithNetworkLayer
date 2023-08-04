@@ -11,20 +11,21 @@ struct SnackGridView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var snacks: [SnackDetailsVO]?
-    @Binding var count: Int
+    @Binding var totalCount: Int
     @Binding var totalPrice: Int
     // snackId
-    var onAddSnack: ((Int, Int) -> Void)?
+    var onAddSnack: ((Int, Int, Int) -> Void)?
     
     var body: some View {
         ScrollView{
             LazyVGrid(columns: columns, spacing: MARGIN_MEDIUM_4) {
                 ForEach(snacks ?? [], id: \.id) { item in
-                    SnackCardView(snackItems: item, count: $count, totalPrice: $totalPrice){ snackId, categoryId in
+                    SnackCardView(snackItems: item, totalPrice: $totalPrice, totalCount: $totalCount){ snackId, categoryId, itemCount in
                         print("Snack Id \(snackId)")
                         print("Category Id \(categoryId)")
+                        print("Snack Count \(itemCount)")
                         guard let onAddSnack = onAddSnack else { return }
-                        onAddSnack(snackId, categoryId)
+                        onAddSnack(snackId, categoryId, itemCount)
                     }
                 }
             }
@@ -37,7 +38,7 @@ struct SnackGridView: View {
 
 struct SnackGridView_Previews: PreviewProvider {
     static var previews: some View {
-        SnackGridView(count: .constant(0), totalPrice: .constant(0))
+        SnackGridView(totalCount: .constant(0), totalPrice: .constant(0))
     }
 }
 struct SnackImageView: View {

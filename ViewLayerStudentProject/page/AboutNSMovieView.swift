@@ -17,7 +17,7 @@ struct AboutNSMovieView: View {
     var section: String?
     var cityName: String?
     @State var movieDetails: MovieVO? = nil
-//    @State var isBooking: Bool = false
+    @State var isBooking: Bool = false
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .bottom)) {
@@ -89,17 +89,20 @@ struct AboutNSMovieView: View {
             
             if (section == NOW_PLAYING_MOVIE) {
                 // Booking Floating Button
-                BookingButtonView()
+                BookingButtonView(isBooking: $isBooking)
             }
            
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .background(Color(BG_COLOR))
-        .navigationDestination(for: String.self, destination: { value in
-            if (value == "GoToTimeSlotSection") {
-                TimeSlotScreenView(movieId: movieId, cityName: cityName)
-            }
+        .fullScreenCover(isPresented: $isBooking, content: {
+            TimeSlotScreenView(movieId: movieId, cityName: cityName, movieName: movieDetails?.originalTitle, posterImageLink: movieDetails?.getPosterPathTogetherWithBaseURL())
         })
+//        .navigationDestination(for: String.self, destination: { value in
+//            if (value == "GoToTimeSlotSection") {
+//
+//            }
+//        })
         .onAppear(){
             requestData()
         }
@@ -230,7 +233,7 @@ struct StoryLineView: View {
 
 struct BookingButtonView: View {
     
-//    @Binding var isBooking: Bool
+    @Binding var isBooking: Bool
     
     var body: some View {
         
@@ -243,9 +246,12 @@ struct BookingButtonView: View {
                 Spacer(minLength: MARGIN_XLARGE)
                 
                 // Booking Button ... jul26
-                NavigationLink(value: "GoToTimeSlotSection") {
+//                NavigationLink(value: "GoToTimeSlotSection") {
                     BottomFloatingBtnView(text: BOOKING_BTN_LABEL)
-                }
+                    .onTapGesture {
+                        self.isBooking = true
+                    }
+//                }
                 
             }
             .frame(width: BOOKING_BTN_WIDTH, height: BOOKING_BTN_HEIGHT)

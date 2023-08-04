@@ -29,4 +29,10 @@ protocol MovieDataAgent {
     
     // Get Snack list by type
     func getSnackListByCategory(id: Int, token: String, onSuccess: @escaping ([SnackDetailsVO]) -> Void, onFailure: @escaping (String) -> Void)
+    
+    // fetch checkout receipt
+    func fetchCheckOut(token: String, timeslotId: Int, seatNumber: [String], bookingDate: String, movieId: Int, cardId: Int, snacks: [SnackRequest], onSuccess: @escaping (CheckOutVO) -> Void, onFailure: @escaping (String) -> Void)
+    
+    // get payment type
+    func getPaymentTypeList(token: String, onSuccess: @escaping ([PaymentTypeVO]) -> Void, onFailure: @escaping (String) -> Void)
 }

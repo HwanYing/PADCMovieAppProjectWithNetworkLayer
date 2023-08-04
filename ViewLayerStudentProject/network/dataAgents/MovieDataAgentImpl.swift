@@ -113,4 +113,51 @@ class MovieDataAgentImpl: MovieDataAgent {
             onFailure(error.localizedDescription)
         }
     }
+    
+    // fetch checkout receipt
+    func fetchCheckOut(token: String, timeslotId: Int, seatNumber: [String], bookingDate: String, movieId: Int, cardId: Int, snacks: [SnackRequest], onSuccess: @escaping (CheckOutVO) -> Void, onFailure: @escaping (String) -> Void) {
+        
+        let header: HTTPHeaders = [
+            "Authorization": token
+        ]
+        
+        let checkOutRequest = CheckOutRequest(
+            cinemaDayTimeSlotId: timeslotId,
+            seatNumber: seatNumber.first,
+            bookingDate: bookingDate,
+            movieId: movieId,
+            cardId: cardId,
+            snacks: snacks
+            )
+        
+        do {
+            let jsonData = try JSONEncoder().encode(checkOutRequest)
+            let requestParams = try JSONSerialization.jsonObject(with: jsonData)
+            if let parameters = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
+                AF.request("\(BASE_URL)\(ENDPOINT_SET_CHECKOUT)", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: header).responseDecodable(of: CheckOutResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        debugPrint(value.data ?? CheckOutVO())
+                        onSuccess(value.data ?? CheckOutVO())
+                    case .failure(let error):
+                        onFailure(error.localizedDescription)
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    // get payment type
+    func getPaymentTypeList(token: String, onSuccess: @escaping ([PaymentTypeVO]) -> Void, onFailure: @escaping (String) -> Void) {
+        let header: HTTPHeaders = [
+            "Authorization": token
+        ]
+        fetchDataWithParamsAndHeader(forEndPoint: ENDPOINT_GET_PAYMENT_TYPE, method: .get, parameters: nil, headers: header) { (response: PaymentTypeResponse) in
+            onSuccess(response.data ?? [PaymentTypeVO]())
+        } onFailure: { error in
+            onFailure(error.localizedDescription)
+        }
+    }
 }

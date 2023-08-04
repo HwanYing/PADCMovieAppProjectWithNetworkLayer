@@ -12,13 +12,20 @@ struct SeatingPlanPageView: View {
     @Environment(\.presentationMode) var presentation
     let mModel: MovieModel = MovieModelImpl.shared
     let uModel: UserModel = UserModelImpl.shared
+    
     var date: Date?
     var slotId: Int?
+    var movieId: Int?
+    var movieTitle: String?
+    var posterImageLink: String?
+    
     @State var seats : [CinemaSeatVO]? = nil
     @State var seatId: [String] = []
     @State var seatPrice: Int = 0
     @State var selectSeatComplete: Bool = false
+    @State var computedDate = ""
     @State var seatName: [String] = []
+    @State var seatItemPrice: Int = 0
     @State var changedSeats: [CinemaSeatVO]? = nil
     @State var selectCount = 0
     
@@ -46,7 +53,7 @@ struct SeatingPlanPageView: View {
                 
                 
                 // Movie Seat
-                MovieSeatZoomableContainerView(view: AnyView(MovieSeatsView(seatArray: self.seats, seatId: $seatId, seatName: $seatName, seatPrice: $seatPrice)
+                MovieSeatZoomableContainerView(view: AnyView(MovieSeatsView(seatArray: self.seats, seatId: $seatId, seatName: $seatName, seatPrice: $seatPrice, seatItemPrice: $seatItemPrice)
                                                              { seatCustomId in
                     self.changedSeats = seats?.map({ iteratedSeat in
                         if (iteratedSeat.uniqueId == seatCustomId) {
@@ -78,10 +85,15 @@ struct SeatingPlanPageView: View {
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarBackButtonHidden(true)
         .fullScreenCover(isPresented: $selectSeatComplete, content: {
-            GrabABiteView(seatName: seatName, price: seatPrice, slotID: slotId)
+//            var timeslotId: Int?
+//            var seatNumber: [String]?
+//            var totalSeatPrice: Int?
+//            var bookingDate: String?
+//            var movieId: Int?
+            GrabABiteView(timeslotId: self.slotId, seatNumber: self.seatName, seatPrice: self.seatItemPrice, totalSeatPrice: self.seatPrice, bookingDate: self.computedDate, movieId: self.movieId, movieTitle: self.movieTitle, posterImageLink: self.posterImageLink)
         })
         .onAppear(){
-            let computedDate = self.calculatedDate(date: date ?? Date())
+            self.computedDate = self.calculatedDate(date: date ?? Date())
             
             requestData(slotId: slotId ?? 0, date: computedDate)
         }
@@ -167,6 +179,8 @@ struct MovieSeatsView: View {
     @Binding var seatId: [String]
     @Binding var seatName: [String]
     @Binding var seatPrice: Int
+    @Binding var seatItemPrice: Int
+    
     var onChooseSeat: ((String) -> Void)?
     
     var body: some View{
@@ -190,6 +204,9 @@ struct MovieSeatsView: View {
                         } else {
                             print("Seat isn't available!")
                         }
+                    }
+                    .onAppear(){
+                        self.seatItemPrice = seat.price ?? 0
                     }
             }
             

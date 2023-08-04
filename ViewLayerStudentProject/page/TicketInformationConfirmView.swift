@@ -9,7 +9,14 @@ import SwiftUI
 
 struct TicketInformationConfirmView: View {
     
-    @State var ticketCount = 2
+    @State var ticketCount = 1
+    
+    var movieTitle: String?
+    var place: String?
+    var ticketName: String?
+    var date: String?
+    var startTime: String?
+    var posterImageLink: String?
     
     var body: some View {
         ZStack {
@@ -17,7 +24,7 @@ struct TicketInformationConfirmView: View {
             Color(BG_COLOR)
             
             // Ticket result section
-            TicketResultView(ticketCount: ticketCount)
+            TicketResultView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketName: ticketName, date: date, startTime: startTime, posterImageLink: posterImageLink)
             
             // booking success image
             BookingSuccesView()
@@ -60,29 +67,33 @@ struct QRGeneratorView: View {
 
 struct MovieInfoSectionOneView: View {
     
-    var ticketCount: Int
+    var ticketCount: Int?
+    var movieTitle: String?
+    var place: String?
+    var ticketName: String?
+    var date: String?
+    var startTime: String?
+    var posterImageLink: String?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0.0) {
             HStack{
                 // poster
-                Image(POSTER_IMAGE)
-                    .resizable()
-                    .frame(width: BOOKING_RESULT_IMG_WIDTH, height: BOOKING_RESULT_IMG_HEIGHT)
-                    .cornerRadius(MARGIN_SMALL)
+                TicketConfirmImageView(imageUrl: posterImageLink ?? "")
+                
                 VStack(alignment: .leading, spacing: MARGIN_MEDIUM_2 - MARGIN_SMALL) {
                     HStack {
-                        Text(MOVIE_TITLE)
+                        Text(movieTitle ?? "")
                             .foregroundColor(.white)
                             .font(.system(size: MARGIN_MEDIUM_2))
                             .fontWeight(.bold)
-                        Text("(3D)(U/A)")
-                            .font(.system(size: MARGIN_HALF_LARGE))
-                            .foregroundColor(Color(SUB_NOTE_COLOR))
-                            .padding(.leading, -MARGIN_SMALL)
-                            .fontWeight(.bold)
+//                        Text("(3D)(U/A)")
+//                            .font(.system(size: MARGIN_HALF_LARGE))
+//                            .foregroundColor(Color(SUB_NOTE_COLOR))
+//                            .padding(.leading, -MARGIN_SMALL)
+//                            .fontWeight(.bold)
                     }
-                    Text(CINEMA_NAME)
+                    Text(place ?? "")
                         .font(.system(size: MARGIN_MEDIUM_2))
                         .foregroundColor(Color(PRIMARY_COLOR))
                         .fontWeight(.bold)
@@ -90,21 +101,21 @@ struct MovieInfoSectionOneView: View {
                     HStack {
                         Text(M_TICKET)
                             .foregroundColor(Color(SUB_TEXT_COLOR))
-                        Text("\(ticketCount)")
+                        Text("\(ticketCount ?? 0)")
                             .foregroundColor(Color(PRIMARY_COLOR))
                             .padding([.leading,.trailing], -MARGIN_SMALL)
                         Text(")")
                             .foregroundColor(Color(SUB_TEXT_COLOR))
                     }
                     HStack {
-                        Text(TICKET_SEAT_NO)
+                        Text(ticketName ?? "")
                             .font(.system(size: MARGIN_MEDIUM_2))
                             .foregroundColor(.white)
                         
-                        Text(SCREEN_NUMBER)
-                            .font(.system(size: MARGIN_MEDIUM_2))
-                            .foregroundColor(Color(SUB_TEXT_COLOR))
-                            .padding(.leading, -MARGIN_SMALL)
+//                        Text(SCREEN_NUMBER)
+//                            .font(.system(size: MARGIN_MEDIUM_2))
+//                            .foregroundColor(Color(SUB_TEXT_COLOR))
+//                            .padding(.leading, -MARGIN_SMALL)
                     }
                     .fontWeight(.bold)
                     
@@ -135,7 +146,7 @@ struct MovieInfoSectionOneView: View {
             .padding(.top, MARGIN_MEDIUM_2)
             
             // Date, time , place
-            DateTimePlaceCombineView()
+            DateTimePlaceCombineView(date: date, startTime: startTime, place: place)
                 .padding(EdgeInsets(top: -MARGIN_MEDIUM_2, leading: MARGIN_MEDIUM_2, bottom: MARGIN_MEDIUM_4, trailing: 0))
         }
         .background(LinearGradient(gradient: Gradient(colors: [ Color(BOOKING_BG_COLOR_1), Color(BOOKING_BG_COLOR_2).opacity(0.4),Color(BOOKING_BG_COLOR_2).opacity(0.3), Color(BOOKING_BG_COLOR_3).opacity(0.8),Color(SNACK_BG_COLOR)]), startPoint: .topLeading, endPoint: .bottomTrailing))
@@ -166,8 +177,14 @@ struct DoneButtonView: View {
 
 struct TicketResultView: View {
     
-    var ticketCount: Int
-
+    var ticketCount: Int?
+    var movieTitle: String?
+    var place: String?
+    var ticketName: String?
+    var date: String?
+    var startTime: String?
+    var posterImageLink: String?
+    
     var body: some View {
         VStack(alignment: .center,spacing: 0.0) {
             // Title
@@ -178,7 +195,7 @@ struct TicketResultView: View {
                 .padding(.top, MARGIN_XBIG - MARGIN_SMALL)
             
             // movie info section
-            MovieInfoSectionOneView(ticketCount: ticketCount)
+            MovieInfoSectionOneView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketName: ticketName, date: date, startTime: startTime, posterImageLink: posterImageLink)
             
             QRGeneratorView(text: "Hello World")
                 .padding(.top, MARGIN_XBIG - MARGIN_MEDIUM_2)
@@ -205,5 +222,30 @@ struct TicketResultView: View {
             Spacer()
             
         }
+    }
+}
+
+struct TicketConfirmImageView: View {
+    
+    var imageUrl: String = ""
+    
+    var body: some View {
+        AsyncImage(url: URL(string: imageUrl)){ phase in
+            switch phase {
+            case .empty:
+                ProgressView()
+            case .success(let image):
+                image
+                    .resizable()
+                    .frame(minWidth: 0, idealWidth: BOOKING_RESULT_IMG_WIDTH, maxWidth: BOOKING_RESULT_IMG_WIDTH, minHeight: 0, idealHeight: BOOKING_RESULT_IMG_HEIGHT, maxHeight: BOOKING_RESULT_IMG_HEIGHT)
+                    .cornerRadius(MARGIN_SMALL)
+                    .clipped()
+            case .failure:
+                Image(systemName: "exclamationmark.icloud")
+            @unknown default:
+                EmptyView()
+            }
+        }
+        
     }
 }

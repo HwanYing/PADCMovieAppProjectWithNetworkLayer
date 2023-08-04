@@ -21,4 +21,6 @@ struct PaymentTypeVO: Codable, Identifiable, Hashable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
+    
+
 }
