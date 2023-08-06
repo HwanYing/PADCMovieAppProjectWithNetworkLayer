@@ -49,12 +49,12 @@ struct CinemaSeatVO: Codable, Hashable {
         case symbol
         case price
     }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(uniqueId)
-    }
-    static func == (lhs: CinemaSeatVO, rhs: CinemaSeatVO) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(uniqueId)
+//    }
+//    static func == (lhs: CinemaSeatVO, rhs: CinemaSeatVO) -> Bool {
+//        return lhs.hashValue == rhs.hashValue
+//    }
     func isAvailable() -> Bool {
         return type == SeatType.SEAT_TYPE_AVAILABLE
     }

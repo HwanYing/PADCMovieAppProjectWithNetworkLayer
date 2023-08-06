@@ -18,6 +18,8 @@ struct SeatingPlanPageView: View {
     var movieId: Int?
     var movieTitle: String?
     var posterImageLink: String?
+    var place: String?
+    var bookingTime: String?
     
     @State var seats : [CinemaSeatVO]? = nil
     @State var seatId: [String] = []
@@ -42,7 +44,7 @@ struct SeatingPlanPageView: View {
                 
                 // Screen
                 CinemaScreenView()
-                    .padding(.top, MARGIN_MEDIUM_2)
+                    .padding(.top, MARGIN_MEDIUM_1)
                 
                 // Price
                 Text(PRICE_NORMAL_TEXT)
@@ -53,10 +55,11 @@ struct SeatingPlanPageView: View {
                 
                 
                 // Movie Seat
-                MovieSeatZoomableContainerView(view: AnyView(MovieSeatsView(seatArray: self.seats, seatId: $seatId, seatName: $seatName, seatPrice: $seatPrice, seatItemPrice: $seatItemPrice)
-                                                             { seatCustomId in
+                MovieSeatZoomableContainerView(view: AnyView(MovieSeatsView(seatArray: self.seats, seatId: $seatId, seatName: $seatName, seatPrice: $seatPrice, seatItemPrice: $seatItemPrice) { seatCustomId, seatCustomName in
+                    
                     self.changedSeats = seats?.map({ iteratedSeat in
-                        if (iteratedSeat.uniqueId == seatCustomId) {
+                        
+                        if (iteratedSeat.uniqueId == seatCustomId && iteratedSeat.seatName == seatCustomName) {
                             
                             return CinemaSeatVO(id: iteratedSeat.id, type: iteratedSeat.type, seatName: iteratedSeat.seatName, symbol: iteratedSeat.symbol, price: iteratedSeat.price, isSelected: true)
                             
@@ -75,22 +78,18 @@ struct SeatingPlanPageView: View {
                     self.seats = nil
                     self.seats = self.changedSeats
                     
-                }
-                                                            ), viewHeight: SEAT_VIEW_HEIGHT, seatId: seatId, price: seatPrice, isSelected: $selectSeatComplete).padding([.leading, .trailing], MARGIN_SMALL)
+                }), viewHeight: SEAT_VIEW_HEIGHT, seatId: seatId, price: seatPrice, isSelected: $selectSeatComplete).padding([.leading, .trailing], MARGIN_SMALL)
                 
                 
                 Spacer()
             }
         }
         .edgesIgnoringSafeArea([.top, .bottom])
+        .frame(height: UIScreen.main.bounds.height)
         .navigationBarBackButtonHidden(true)
-        .fullScreenCover(isPresented: $selectSeatComplete, content: {
-//            var timeslotId: Int?
-//            var seatNumber: [String]?
-//            var totalSeatPrice: Int?
-//            var bookingDate: String?
-//            var movieId: Int?
-            GrabABiteView(timeslotId: self.slotId, seatNumber: self.seatName, seatPrice: self.seatItemPrice, totalSeatPrice: self.seatPrice, bookingDate: self.computedDate, movieId: self.movieId, movieTitle: self.movieTitle, posterImageLink: self.posterImageLink)
+        .navigationDestination(isPresented: $selectSeatComplete, destination: {
+            
+            GrabABiteView(timeslotId: self.slotId, seatNumber: self.seatName, totalSeatPrice: self.seatPrice, bookingDate: self.computedDate, bookingTime: self.bookingTime, movieId: self.movieId, movieTitle: self.movieTitle, posterImageLink: self.posterImageLink, place: self.place)
         })
         .onAppear(){
             self.computedDate = self.calculatedDate(date: date ?? Date())
@@ -174,21 +173,23 @@ struct MovieSeatsView: View {
     // let SEAT_COLUMNS_COUNT = 18
     //    let SEAT_SPACING = 7.0
     var columns = getGridItems(numberOfColumns: SEAT_COLUMNS_COUNT, spacing: SEAT_SPACING)
-    //    var columns = getGridItems(numberOfColumns: SEAT_COLUMNS_COUNT)
+//        var columns = getGridItems(numberOfColumns: SEAT_COLUMNS_COUNT)
     var seatArray: [CinemaSeatVO]?
     @Binding var seatId: [String]
     @Binding var seatName: [String]
     @Binding var seatPrice: Int
     @Binding var seatItemPrice: Int
     
-    var onChooseSeat: ((String) -> Void)?
-    
+    var onChooseSeat: ((String, String) -> Void)?
+//    var onTapSeat: ((_ seat: CinemaSeatVO) -> Void)?
+
     var body: some View{
-        LazyVGrid(columns: columns, spacing: MARGIN_MEDIUM_2) {
+        LazyVGrid(columns: columns, spacing: MARGIN_SMALL) { // , spacing: MARGIN_MEDIUM_2
             // seats ?? [], id: \.seatName
             ForEach(seatArray ?? [], id: \.uniqueId) { seat in
                 MovieSeatItemView(seat: seat)
                     .onTapGesture {
+                        
                         if (seat.isAvailable() && !seat.isSelected && !self.seatId.contains(seat.uniqueId)) {
                             
                             print("Seat Name===> \(seat.seatName ?? "")")
@@ -200,7 +201,8 @@ struct MovieSeatsView: View {
                             print("seat id array ==>", self.seatId)
                             
                             guard let onChooseSeat = self.onChooseSeat else { return }
-                            onChooseSeat(seat.uniqueId)
+                            onChooseSeat(seat.uniqueId, seat.seatName ?? "")
+                            
                         } else {
                             print("Seat isn't available!")
                         }
@@ -224,8 +226,10 @@ struct MovieSeatItemView: View {
             if (seat?.isSelected ?? false) {
                 Image(CHAIR_GREEN)
                     .resizable()
-                    .frame(width: MOVIE_SEAT_SIZE, height: MOVIE_SEAT_SIZE)
+                    .frame(width: MOVIE_SEAT_SIZE+MARGIN_CARD_MEDIUM_2, height: MOVIE_SEAT_SIZE+MARGIN_CARD_MEDIUM_2)
                     .clipped()
+                    .padding(.horizontal, -MARGIN_SMALL)
+                    .padding(.vertical, -2)
             } else {
                 Image(CHAIR_WHITE)
                     .resizable()

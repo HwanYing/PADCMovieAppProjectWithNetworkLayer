@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TicketView: View {
+        
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .center)) {

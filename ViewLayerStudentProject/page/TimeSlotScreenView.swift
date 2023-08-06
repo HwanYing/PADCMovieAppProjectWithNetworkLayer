@@ -16,6 +16,8 @@ struct TimeSlotScreenView: View {
     @State var date: Date = Date.now
     let now = Date.now
     @State var selectDate = Date.now
+    @State var place = ""
+    @State var time = ""
     
     var movieId: Int?
     var cityName: String?
@@ -61,27 +63,26 @@ struct TimeSlotScreenView: View {
                 
                
                     // TimeSlots and hint section
-                CinemaListView(cinemaList: cinemaList, slotID: $slotID, timeSlotCount: timeSlotCount)
+                CinemaListView(cinemaList: cinemaList, slotID: $slotID, timeSlotCount: timeSlotCount) {
+                    slotId, name, time in
+                    self.place = name
+                    self.slotID = slotId
+                    self.time = time
+                }
             }
             .padding(.top, MARGIN_XBIG - MARGIN_MEDIUM)
-//            .navigationDestination(for: Timeslot.self) { slot in
-//                SeatingPlanPageView(userId: self.userId, date: self.selectDate, slotId: slot.cinemaDayTimeslotID)
-//            }
+
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarHidden(true)
-        .fullScreenCover(isPresented: $isTimeSlotClick, content: {
-            SeatingPlanPageView(date: self.selectDate, slotId: self.slotID, movieId: self.movieId, movieTitle: self.movieName, posterImageLink: self.posterImageLink)
+        .navigationDestination(isPresented: $isTimeSlotClick, destination: {
+            SeatingPlanPageView(date: self.selectDate, slotId: self.slotID, movieId: self.movieId, movieTitle: self.movieName, posterImageLink: self.posterImageLink, place: self.place, bookingTime: self.time)
         })
         .onAppear(){
             
            requestData(date1: date)
         }
-//        .onChange(of: self.selectDate) { newValue in
-//            print("Selected Date ===> \(newValue)")
-//            print("slot id ==> \(self.slotID)")
-//
-//        }
+
         .onChange(of: self.slotID) { newValue in
             print("Slot \(newValue)")
             self.isTimeSlotClick = true
@@ -280,12 +281,18 @@ struct CinemaListView: View {
     var cinemaList: [CinemaVO]?
     @Binding var slotID: Int
     var timeSlotCount: Int?
-    
+    var onTapSlot: ((Int, String, String) -> Void)?
+
     var body: some View {
         ScrollView(.vertical) {
             ForEach(cinemaList ?? [], id: \.cinemaId) { Item in
                 // Time slot item
-                CinemaAndTimeSlotsItem(cinema: Item, count: cinemaList?.count, timeSlotCount: timeSlotCount,  slotID: $slotID)
+                CinemaAndTimeSlotsItem(cinema: Item, count: cinemaList?.count, timeSlotCount: timeSlotCount,  slotID: $slotID) { slotId, name, time in
+                    print("\(slotId)")
+                    print("\(name)")
+                    guard let onTapSlot = onTapSlot else { return }
+                    onTapSlot(slotId, name, time)
+                }
                 
             }
         }

@@ -46,12 +46,12 @@ struct PickRegionView: View {
            
         }
         .edgesIgnoringSafeArea([.top,.bottom])
-        .fullScreenCover(isPresented: $showVerify) {
-            TabBarView(region: $cityName)
-        }
-//        .navigationDestination(isPresented: $showVerify, destination: {
+//        .fullScreenCover(isPresented: $showVerify) {
 //            TabBarView(region: $cityName)
-//        })
+//        }
+        .navigationDestination(isPresented: $showVerify, destination: {
+            TabBarView(region: $cityName)
+        })
         .onAppear(){
             requestData()
         }

@@ -19,8 +19,8 @@ struct ViewLayerStudentProjectApp: SwiftUI.App {
     
     var body: some Scene {
         WindowGroup {
-//            SplashScreenView()
-            TabBarView(region: .constant("Yangon"))
+            SplashScreenView()
+//            TabBarView(region: .constant("Yangon"))
         }
     }
 }

@@ -17,21 +17,28 @@ struct CheckOutView: View {
     @State var showPayment: Bool = false
     @Environment(\.dismiss) var dismiss
     @State var showBeverage: Bool = true
+    @State var cancelPrice = 0
+    @State var showTotalPrice = 0
     
-    @State var checkOutResult: CheckOutVO? = nil
     @State var checkOutSuccess: Bool = false
+    @State var date1: String = ""
+    @State var time = ""
+    @State var ticketPrice: Int = 0
+    @State var finalTotalPrice: Int = 0
     
     var timeslotId: Int?
     var seatNumber: [String]?
     var seatPrice: Int?
     var bookingDate: String?
+    var bookingTime: String?
     var movieId: Int?
     var cardId: Int?
     var snacks: [SnackRequest]?
     var movieTitle: String?
-    var snackTotalPrice: Int?
-    var snackList: [SnackDetailsVO]?
+    @Binding var snackTotalPrice: Int
+    @Binding var snackList: [SnackDetailsVO]?
     var posterImagelink: String?
+    var place: String?
     
     var body: some View {
         ZStack {
@@ -52,26 +59,40 @@ struct CheckOutView: View {
                         MovieTitleSectionView(title: self.movieTitle)
                         
                         // cinema place, screen no.
-                        CinemaPlaceScreenView(place: self.checkOutResult?.bookingNo)
+                        CinemaPlaceScreenView(place: place)
                         
                         // Date, time , place
-                        DateTimePlaceCombineView(date: checkOutResult?.bookingDate, startTime: checkOutResult?.timeslot?.startTime, place: checkOutResult?.bookingNo)
+                        DateTimePlaceCombineView(date: self.bookingDate, startTime: self.bookingTime, place: place)
                         
                         // no of ticket
-                        NumberOfTicketSectionView(ticketCount: ticketCount)
+                        NumberOfTicketSectionView(ticketCount: self.seatNumber?.count ?? 0)
                         
                         // tiket info section
-                        TicketInfoSectionView(ticketName: self.seatNumber?.first, ticketPrice: self.seatPrice)
+                        TicketInfoSectionView(ticketName: self.seatNumber, ticketPrice: self.ticketPrice)
                         
                         Divider()
                             .background(Color(SUB_TEXT_COLOR))
                             .padding(.top, MARGIN_MEDIUM_4)
                         
                         // food and beverage title
-                        FoodAndBeverageTitleView(showBeverage: $showBeverage, totalPrice: self.snackTotalPrice)
+                        FoodAndBeverageTitleView(showBeverage: $showBeverage, totalPrice: self.showTotalPrice)
                         
                         // food and beverage section
-                        FoodListView(expandBeverage: showBeverage, snacks: self.snackList)
+                        FoodListView(expandBeverage: showBeverage, snacks: self.snackList){ snackId, categoryid, snackName, qty in
+                            self.snackList = snackList?.map({ snack in
+                                if (snack.id == snackId && snack.categoryID == categoryid) {
+                                    self.cancelPrice = snack.price ?? 0
+                                    return SnackDetailsVO(id: snack.id, name: snack.name, description: snack.description, price: snack.price, categoryID: snack.categoryID, image: snack.image, selectCount: 0)
+                                } else {
+                                    return SnackDetailsVO(id: snack.id, name: snack.name, description: snack.description, price: snack.price, categoryID: snack.categoryID, image: snack.image, selectCount: snack.selectCount)
+                                }
+                            })
+                            self.snackTotalPrice = self.snackTotalPrice - (self.cancelPrice*qty)
+                            print(self.snackTotalPrice)
+                            self.showTotalPrice = 0
+                            self.showTotalPrice = self.snackTotalPrice * 1000
+                            print("Show Total Price change ==> \(self.showTotalPrice)")
+                        }
                         
                         VStack(alignment: .leading, spacing: 0.0) {
                             
@@ -89,7 +110,7 @@ struct CheckOutView: View {
                                 .padding(.top, MARGIN_XLARGE - 2)
                             
                             // Final Total section
-                            FinalTotalView(seatPrice: self.seatPrice, snackPrice: self.snackTotalPrice, fee: 5)
+                            FinalTotalView(finalTotal: self.finalTotalPrice)
                         }
                         
                         
@@ -116,28 +137,30 @@ struct CheckOutView: View {
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarBackButtonHidden(true)
-        .fullScreenCover(isPresented: $checkOutSuccess, content: {
-            TicketInformationConfirmView(movieTitle: self.movieTitle, place: checkOutResult?.bookingNo, ticketName: self.seatNumber?.first, date: self.bookingDate, startTime: checkOutResult?.timeslot?.startTime, posterImageLink: "")
+        .navigationDestination(isPresented: $checkOutSuccess, destination: {
+            PaymentPageVeiw(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.seatPrice, bookingDate: self.bookingDate, movieId: self.movieId, snackList: self.snackList, totalSeatPrice: self.seatPrice, movieTitle: self.movieTitle, snackTotalPrice: self.snackTotalPrice, posterImageLink: self.posterImagelink, place: self.place)
         })
         .onAppear(){
             print("Movie Title ===> \(self.movieTitle ?? "")")
-            requestData()
+            print("Poster image ==> \(posterImagelink ?? "")")
+            self.showTotalPrice = self.snackTotalPrice * 1000
+            self.ticketPrice = (self.seatPrice ?? 0) * 1000
+            print("Ticket price ==> \(self.ticketPrice)")
+            print("Snack total price ==> \(self.showTotalPrice)")
+            self.finalTotalPrice = self.ticketPrice + self.showTotalPrice + 500
+        }
+        .onChange(of: self.snackTotalPrice) { newValue in
+            print("New Value ==> \(newValue)")
+            self.showTotalPrice = newValue * 1000
+            self.finalTotalPrice = self.showTotalPrice + self.ticketPrice + 500
         }
     }
     
-    func requestData() {
-        mModel.fetchCheckOut(timeslotId: self.timeslotId ?? 0, seatNumber: self.seatNumber ?? [], bookingDate: self.bookingDate ?? "", movieId: self.movieId ?? 0, cardId: self.cardId ?? 0, snacks: self.snacks ?? []) { result in
-            self.checkOutResult = result
-        } onFailure: { error in
-            print(error)
-        }
-
-    }
 }
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckOutView()
+        CheckOutView(snackTotalPrice: .constant(0), snackList: .constant([SnackDetailsVO]()))
     }
 }
 
@@ -201,7 +224,8 @@ struct FoodAndBeverageListView: View {
     var foodName: String
     var qty: Int
     var price: Int
-    
+    var onCancelSnack: ((String, Int) -> Void)?
+
     var body: some View {
         HStack {
             Image(systemName: IC_MULTIPLY_RETURN)
@@ -209,6 +233,10 @@ struct FoodAndBeverageListView: View {
                 .frame(width: MARGIN_MEDIUM_2, height: MARGIN_CARD_MEDIUM_2 + 1)
                 .foregroundColor(Color(PRIMARY_COLOR))
                 .fontWeight(.bold)
+                .onTapGesture {
+                    guard let onCancelSnack = onCancelSnack else { return }
+                    onCancelSnack(foodName, qty)
+                }
             
             Text("\(foodName)(Qt.\(qty))")
                 .font(.system(size: MARGIN_HALF_LARGE))
@@ -217,7 +245,7 @@ struct FoodAndBeverageListView: View {
             
             Spacer()
             
-            Text("\(price)Ks")
+            Text("\(price)000 Ks")
                 .font(.system(size: MARGIN_HALF_LARGE))
                 .foregroundColor(Color(SUB_TEXT_COLOR))
                 .fontWeight(.bold)
@@ -328,19 +356,26 @@ struct NumberOfTicketSectionView: View {
 
 struct TicketInfoSectionView: View {
     
-    var ticketName: String?
+    var ticketName: [String]?
     var ticketPrice: Int?
+    @State var ticketNameString = ""
     
     var body: some View {
         HStack{
-            Text(ticketName ?? "")
+            Text(ticketNameString)
             Spacer()
-            Text("\(ticketPrice ?? 0)Ks")
+            Text("\(ticketPrice ?? 0) Ks")
         }
         .font(.system(size: MARGIN_MEDIUM_2))
         .foregroundColor(.white)
         .fontWeight(.bold)
         .padding(.top, MARGIN_MEDIUM_1)
+        .onAppear(){
+            
+            self.ticketNameString = ticketName?.map({
+                $0
+            }).joined(separator: ",") ?? ""
+        }
     }
 }
 
@@ -372,7 +407,7 @@ struct FoodAndBeverageTitleView: View {
             
             Spacer()
             
-            Text("\(totalPrice ?? 0)Ks")
+            Text("\(totalPrice ?? 0) Ks")
                 .font(.system(size: MARGIN_MEDIUM_2))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -385,14 +420,18 @@ struct FoodListView: View {
     
     var expandBeverage: Bool
     var snacks: [SnackDetailsVO]?
-    
+    var onCancelSnack: ((Int, Int, String, Int) -> Void)?
+
     var body: some View {
         
         if expandBeverage {
             VStack(alignment: .leading, spacing: 0.0) {
                 ForEach(snacks ?? [], id: \.id) { snack in
                     if (snack.selectCount != 0) {
-                        FoodAndBeverageListView(foodName: snack.name ?? "", qty: snack.selectCount, price: snack.price ?? 0)
+                        FoodAndBeverageListView(foodName: snack.name ?? "", qty: snack.selectCount, price: snack.price ?? 0){ snackName, qty in
+                            guard let onCancelSnack = onCancelSnack else { return }
+                            onCancelSnack(snack.id ?? 0, snack.categoryID ?? 0, snackName, qty)
+                        }
                     }
                    
                 }
@@ -443,7 +482,7 @@ struct ConvenienceFeeTitleView: View {
             
             Spacer()
             
-            Text("5Ks")
+            Text("500Ks")
                 .font(.system(size: MARGIN_MEDIUM_2))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -480,10 +519,8 @@ struct TicketPolicySectionView: View {
 }
 
 struct FinalTotalView: View {
-    
-    var seatPrice: Int?
-    var snackPrice: Int?
-    var fee: Int?
+
+    var finalTotal: Int?
     @State var totalPrice: Int = 0
     
     var body: some View {
@@ -494,15 +531,13 @@ struct FinalTotalView: View {
             Spacer()
             
             // Total Price
-            Text("\(totalPrice)Ks")
+            Text("\(finalTotal ?? 0) Ks")
         }
         .font(.system(size: MARGIN_MEDIUM_3))
         .foregroundColor(Color(PRIMARY_COLOR))
         .fontWeight(.bold)
         .padding(.bottom, MARGIN_LARGE)
         .padding(.top, MARGIN_MEDIUM_3)
-        .onAppear(){
-            self.totalPrice = (seatPrice ?? 0) + (snackPrice ?? 0)  + (fee ?? 0)
-        }
+        
     }
 }

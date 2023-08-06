@@ -10,18 +10,21 @@ import SwiftUI
 struct MovieGridView: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    @Binding var movieId: Int
+    @Binding var onTapMovie: Bool
     var sectionName: String?
     var mMovies: [MovieVO]?
+    
     //    var onTapMovie: () -> Void = {}
     //
     //    init(onTapMovie: @escaping () -> Void, sectionName: String) {
     //        self.onTapMovie = onTapMovie
     //        self.sectionName = sectionName
     //    }
-    init(sectionName: String, movies: [MovieVO]?) {
-        self.sectionName = sectionName
-        self.mMovies = movies
-    }
+//    init(sectionName: String, movies: [MovieVO]?) {
+//        self.sectionName = sectionName
+//        self.mMovies = movies
+//    }
     
     var body: some View {
         ScrollView{
@@ -29,9 +32,13 @@ struct MovieGridView: View {
                 ForEach(mMovies ?? [], id: \.id) { movie in
 //                    NavigationLink(value: sectionName == MovieType.MOVIE_CURRENT.rawValue ? ViewOptionsRoute.movieDetailsNS : ViewOptionsRoute.movieDetailsCS){
 //                        if sectionName == MovieType.MOVIE_CURRENT.rawValue {
-                    NavigationLink(value: movie) {
+//                    NavigationLink(value: movie) {
                         MovieCardView(mMovie: movie, section: sectionName)
-                            }
+                        .onTapGesture {
+                            self.movieId = movie.id ?? 0
+                            self.onTapMovie = true
+                        }
+//                            }
 //                        } else {
 //                            NavigationLink(value: "ComingSoon") {
 //                                ComingSoonCardView(movie: movie)
@@ -49,7 +56,7 @@ struct MovieGridView: View {
 struct MovieGridView_Previews: PreviewProvider {
     
     static var previews: some View {
-        MovieGridView(sectionName: "", movies: [MovieVO]())
+        MovieGridView(movieId: .constant(0), onTapMovie: .constant(false))
     }
 }
 

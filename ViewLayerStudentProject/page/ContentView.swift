@@ -17,9 +17,9 @@ struct ContentView: View {
     @State var selectionTitle = "95"
     @State var confirmOTP = false
     @State var isEnteringPh = false
-    
+
     var body: some View {
-//        NavigationStack {
+        NavigationStack {
             ZStack {
                 // background color
                 Color(BG_COLOR)
@@ -43,12 +43,12 @@ struct ContentView: View {
                             }
                             .padding([.leading, .trailing], MARGIN_MEDIUM_2)
                         }
-                        .fullScreenCover(isPresented: $confirmOTP) {
-                            ConfirmOTPView(phNumber: phNumber, confirmOTP: $confirmOTP)
-                        }
-//                        .navigationDestination(isPresented: $confirmOTP) {
+//                        .fullScreenCover(isPresented: $confirmOTP) {
 //                            ConfirmOTPView(phNumber: phNumber, confirmOTP: $confirmOTP)
 //                        }
+                        .navigationDestination(isPresented: $confirmOTP) {
+                            ConfirmOTPView(phNumber: phNumber, confirmOTP: $confirmOTP)
+                        }
                     }
                     .padding(.top, TOP_PADDING_1)
                     .toast(message: "Please Enter Phone Number before clicking VERIFY button!",
@@ -58,7 +58,7 @@ struct ContentView: View {
                 
             }
             .edgesIgnoringSafeArea(.vertical)
-//        }
+        }
     }
     func fetchOTPCode() {
         // Get OTP

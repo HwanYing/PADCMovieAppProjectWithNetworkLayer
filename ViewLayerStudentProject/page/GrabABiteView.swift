@@ -35,12 +35,13 @@ struct GrabABiteView: View {
     
     var timeslotId: Int?
     var seatNumber: [String]?
-    var seatPrice: Int?
     var totalSeatPrice: Int?
     var bookingDate: String?
+    var bookingTime: String?
     var movieId: Int?
     var movieTitle: String?
     var posterImageLink: String?
+    var place: String?
     
     var body: some View {
         ZStack {
@@ -177,18 +178,9 @@ struct GrabABiteView: View {
             
         }
         .edgesIgnoringSafeArea([.top, .bottom])
-        .fullScreenCover(isPresented: $goToCheckOut, content: {
-//            CheckOutView()
-//            var timeslotId: Int?
-//            var seatNumber: [String]?
-//            var bookingDate: String?
-//            var movieId: Int?
-//            var snackList: SnackDetailsVO?
-//            var totalSeatPrice: Int?
-            PaymentPageVeiw(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.seatPrice, bookingDate: self.bookingDate, movieId: self.movieId, snackList: self.allSnacks, totalSeatPrice: self.totalSeatPrice, movieTitle: self.movieTitle, snackTotalPrice: self.totalPrice, posterImageLink: self.posterImageLink)
+        .navigationDestination(isPresented: $goToCheckOut, destination: {
+            CheckOutView(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.totalSeatPrice, bookingDate: self.bookingDate, bookingTime: self.bookingTime, movieId: self.movieId, movieTitle: self.movieTitle, snackTotalPrice: $totalPrice, snackList: $allSnacks, posterImagelink: self.posterImageLink, place: self.place)
         })
-//        .navigationDestination(isPresented: $goToCheckOut, destination: {
-//        })
         .onAppear(){
             print("seat name ==> \(seatNumber ?? [])")
             print("slot id ==> \(timeslotId ?? 0)")
@@ -326,13 +318,13 @@ struct ItemCountView: View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: .center), content: {
             
             Circle()
-                .frame(width: MARGIN_CARD_MEDIUM_2, height: MARGIN_CARD_MEDIUM_2)
+                .frame(width: MARGIN_MEDIUM_2, height: MARGIN_MEDIUM_2)
                 .foregroundColor(.red)
             
             // Item count text
             Text("\(itemCount ?? 0)")
                 .foregroundColor(.white)
-                .font(.system(size: MARGIN_MEDIUM))
+                .font(.system(size: MARGIN_CARD_MEDIUM_2))
             
         })
     }
@@ -384,7 +376,7 @@ struct SnackCountBottomView: View {
                 Spacer()
                 
                 // total price
-                Text("\(totalPrice)Ks")
+                Text("\(totalPrice)000 Ks")
                     .font(.system(size: MARGIN_MEDIUM_2))
                     .foregroundColor(.black)
                     .fontWeight(.bold)

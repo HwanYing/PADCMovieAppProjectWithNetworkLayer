@@ -9,40 +9,40 @@ import Foundation
 import SwiftUI
 
 //Create an `enum` so you can define your options
-enum ViewOptionsRoute: Hashable{
-    case movieDetailsCS
-    case movieDetailsNS
-    case timeSlot
-    case seatingPlan
-    case snack
-    case checkout
-    case payment
-    case paymentSuccess
-    
-    //Assign each case with a `View`
-    @ViewBuilder
-    var view: some View{
-        switch self{
-        case .movieDetailsCS:
-            AboutCSMovieView()
-        case .movieDetailsNS:
-            AboutNSMovieView()
-        case .timeSlot:
-            TimeSlotScreenView()
-        case .seatingPlan:
-            SeatingPlanPageView()
-        case .snack:
-            GrabABiteView()
-        case .checkout:
-            CheckOutView()
-        case .payment:
-            PaymentPageVeiw()
-        case .paymentSuccess:
-            TicketInformationConfirmView()
-  
-        }
-    }
-}
+//enum ViewOptionsRoute: Hashable{
+//    case movieDetailsCS
+//    case movieDetailsNS
+//    case timeSlot
+//    case seatingPlan
+//    case snack
+//    case checkout
+//    case payment
+//    case paymentSuccess
+//    
+//    //Assign each case with a `View`
+//    @ViewBuilder
+//    var view: some View{
+//        switch self{
+//        case .movieDetailsCS:
+//            AboutCSMovieView()
+//        case .movieDetailsNS:
+//            AboutNSMovieView()
+//        case .timeSlot:
+//            TimeSlotScreenView()
+//        case .seatingPlan:
+//            SeatingPlanPageView()
+//        case .snack:
+//            GrabABiteView()
+//        case .checkout:
+//            CheckOutView()
+//        case .payment:
+//            PaymentPageVeiw()
+//        case .paymentSuccess:
+//            TicketInformationConfirmView()
+//  
+//        }
+//    }
+//}
 enum Page: String {
     case movies = "Movies"
     case cinema = "Cinema"

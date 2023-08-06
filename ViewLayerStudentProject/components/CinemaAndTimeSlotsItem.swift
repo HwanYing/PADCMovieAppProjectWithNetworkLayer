@@ -16,8 +16,9 @@ struct CinemaAndTimeSlotsItem: View {
     var cinema: CinemaVO?
     var count: Int?
     var timeSlotCount: Int?
-    
     @Binding var slotID: Int
+    var onTapSlot: ((Int, String, String) -> Void)?
+
     
     var body: some View {
         VStack{
@@ -48,7 +49,11 @@ struct CinemaAndTimeSlotsItem: View {
                 if timeSlotExpanding {
                         VStack(alignment: .leading, spacing: 0) {
                             
-                            TimeSlotsView(data: cinema?.timeSlots, timeSlotCount: timeSlotCount, slotID: $slotID)
+                            TimeSlotsView(data: cinema?.timeSlots, timeSlotCount: timeSlotCount, slotID: $slotID) { slotId, slotTime in
+                                print("Cinema and slot item ==> \(slotId)")
+                                guard let onTapSlot = onTapSlot else { return }
+                                onTapSlot(slotId, cinema?.cinema ?? "", slotTime)
+                            }
                            
                             // Longpress hint
                             LongPressHintView()
@@ -201,6 +206,8 @@ struct TimeSlotsView: View {
     var data : [Timeslot]?
     var timeSlotCount: Int?
     @Binding var slotID: Int
+    var onTapSlot: ((Int, String) -> Void)?
+
 // almost full ==> TIME_COLOR_PINK, borderColor: PINK_COLOR
     // filling_fast ===> bgColor: TIME_COLOR_ORANGE, borderColor: NEW_ORANGE_COLOR
     // available ===> bgColor: TIME_COLOR_GREEN, borderColor: GREEN_LIGHT_COLOR
@@ -218,6 +225,9 @@ struct TimeSlotsView: View {
                     .onTapGesture {
                         self.slotID = timeslot.cinemaDayTimeslotID ?? 0
                         print("Slot id ----> \(self.slotID)")
+                        
+                        guard let onTapSlot = onTapSlot else { return }
+                        onTapSlot(self.slotID, timeslot.startTime ?? "")
                     }
                 }
             }

@@ -15,7 +15,8 @@ struct SearchMovieTypeView: View {
     @State var expand1 = false
 
     @State var expand2 = false
-
+    @State var movieId: Int = 0
+    @State var onTapMovie: Bool = false
     @State var currentSelection = MovieType.MOVIE_CURRENT.rawValue
     @State var showDetails = false
     
@@ -92,7 +93,7 @@ struct SearchMovieTypeView: View {
                    
                     // search result list
                     
-                    MovieGridView(sectionName: currentSelection, movies: [MovieVO]())
+                    MovieGridView(movieId: $movieId, onTapMovie: $onTapMovie, sectionName: currentSelection, mMovies: [MovieVO]())
                     .padding(.top, MARGIN_XXLARGE + MARGIN_LARGE)
                     // onTapMovie: {
 //                    showDetails = true

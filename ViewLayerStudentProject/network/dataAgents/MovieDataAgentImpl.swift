@@ -123,7 +123,9 @@ class MovieDataAgentImpl: MovieDataAgent {
         
         let checkOutRequest = CheckOutRequest(
             cinemaDayTimeSlotId: timeslotId,
-            seatNumber: seatNumber.first,
+            seatNumber: seatNumber.map({
+                $0
+            }).joined(separator: ","),
             bookingDate: bookingDate,
             movieId: movieId,
             cardId: cardId,
@@ -132,9 +134,10 @@ class MovieDataAgentImpl: MovieDataAgent {
         
         do {
             let jsonData = try JSONEncoder().encode(checkOutRequest)
-            let requestParams = try JSONSerialization.jsonObject(with: jsonData)
             if let parameters = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
-                AF.request("\(BASE_URL)\(ENDPOINT_SET_CHECKOUT)", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: header).responseDecodable(of: CheckOutResponse.self) { response in
+                AF.request("\(BASE_URL)\(ENDPOINT_SET_CHECKOUT)", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: header)
+                    .validate(statusCode: 200..<400)
+                    .responseDecodable(of: CheckOutResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         debugPrint(value.data ?? CheckOutVO())

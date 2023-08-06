@@ -95,14 +95,9 @@ struct AboutNSMovieView: View {
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .background(Color(BG_COLOR))
-        .fullScreenCover(isPresented: $isBooking, content: {
+        .navigationDestination(isPresented: $isBooking, destination: {
             TimeSlotScreenView(movieId: movieId, cityName: cityName, movieName: movieDetails?.originalTitle, posterImageLink: movieDetails?.getPosterPathTogetherWithBaseURL())
         })
-//        .navigationDestination(for: String.self, destination: { value in
-//            if (value == "GoToTimeSlotSection") {
-//
-//            }
-//        })
         .onAppear(){
             requestData()
         }

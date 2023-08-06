@@ -59,10 +59,8 @@ struct ConfirmOTPView: View {
             
         }
         .edgesIgnoringSafeArea([.top, .bottom])
-//        .navigationDestination(isPresented: $selectRegion) {
-//            PickRegionView(userID: userID, selectRegion: $selectRegion)
-//        }
-        .fullScreenCover(isPresented: $selectRegion) {
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $selectRegion) {
             PickRegionView(selectRegion: $selectRegion)
         }
     }

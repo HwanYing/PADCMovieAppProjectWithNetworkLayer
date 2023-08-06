@@ -46,8 +46,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -56,14 +56,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8909245C-4FCC-4FBD-839D-C15BA2B7300B"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewLayerStudentProject/page/main/MovieSeatZoomableContainerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -78,8 +78,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "requestData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -158,10 +158,42 @@
             filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E9DBBE73-6AE9-4097-8E9B-57D3AD348BA0 - 24492796a285ae64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ViewLayerStudentProject.DateVO) -&gt; ViewLayerStudentProject.DateVO in closure #2 (Foundation.Date) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.AppBar, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.CinemaListView)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.TimeSlotScreenView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "233">
+               </Location>
+               <Location
+                  uuid = "E9DBBE73-6AE9-4097-8E9B-57D3AD348BA0 - 24492796a285ae64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ViewLayerStudentProject.DateVO) -&gt; ViewLayerStudentProject.DateVO in closure #2 (Foundation.Date) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.AppBar, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.CinemaListView)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.TimeSlotScreenView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "403">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,10 +206,42 @@
             filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "EC64A098-A589-4186-BB91-6DFF4A8B4536 - 25a21e66288bbb5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Foundation.Date) -&gt; () in ViewLayerStudentProject.DateListView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "82">
+               </Location>
+               <Location
+                  uuid = "EC64A098-A589-4186-BB91-6DFF4A8B4536 - 25a21e66288bbb5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Foundation.Date) -&gt; () in ViewLayerStudentProject.DateListView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "179">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -190,10 +254,42 @@
             filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D4C26D0C-0458-457F-98F9-D9A6AB2813A2 - fba176c947da79ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Foundation.Date) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.AppBar, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.CinemaListView)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.TimeSlotScreenView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "585">
+               </Location>
+               <Location
+                  uuid = "D4C26D0C-0458-457F-98F9-D9A6AB2813A2 - fba176c947da79ad"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Foundation.Date) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.AppBar, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.CinemaListView)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.TimeSlotScreenView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "1049">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,58 +302,10 @@
             filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "requestData(date1:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "389A2099-BE70-44FE-A2F9-036636C42AFD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/page/SeatingPlanPageView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "16C85C1F-2C76-4F16-A9EA-AD6F532C8DAB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/page/SeatingPlanPageView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DA4E4496-5CEB-44BD-ACC7-ABE1735FF29D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/page/SeatingPlanPageView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "body"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -302,8 +350,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -318,8 +366,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -334,8 +382,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -350,8 +398,8 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -360,7 +408,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F6231C7B-A220-4800-A54F-3384047FA858"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewLayerStudentProject/components/FoodItemCountSheet.swift"
@@ -382,10 +430,42 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
+            startingLineNumber = "373"
+            endingLineNumber = "373"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D156B2CB-637B-49BA-808D-1A5169FE2D4F - 76945f17325fc4a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.SnackItemShowView, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0 in ViewLayerStudentProject.SnackCountBottomView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/GrabABiteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "373"
+                  endingLineNumber = "373"
+                  offsetFromSymbolStart = "1437">
+               </Location>
+               <Location
+                  uuid = "D156B2CB-637B-49BA-808D-1A5169FE2D4F - a5b4fd671f2f8ba6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.SnackItemShowView, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0 in ViewLayerStudentProject.SnackCountBottomView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/GrabABiteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "373"
+                  endingLineNumber = "373"
+                  offsetFromSymbolStart = "33">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -398,88 +478,55 @@
             filePath = "ViewLayerStudentProject/page/GrabABiteView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "body"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2194903F-F497-479B-B3AD-357E09B4C64D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "fetchCheckOut(token:timeslotId:seatNumber:bookingDate:movieId:cardId:snacks:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "01BA3E04-F67F-465F-9C28-A7AC5E64D6BA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "fetchCheckOut(token:timeslotId:seatNumber:bookingDate:movieId:cardId:snacks:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "128110A4-7D50-4319-A8BD-10C037DD71AD"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "fetchCheckOut(token:timeslotId:seatNumber:bookingDate:movieId:cardId:snacks:onSuccess:onFailure:)"
-            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "128110A4-7D50-4319-A8BD-10C037DD71AD - f7a70d0fda817a09"
+                  uuid = "174D7D6F-5FED-460C-A46A-3693CECD6965 - bbc13e0c4743b497"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ViewLayerStudentProject.MovieDataAgentImpl.fetchCheckOut(token: Swift.String, timeslotId: Swift.Int, seatNumber: Swift.Array&lt;Swift.String&gt;, bookingDate: Swift.String, movieId: Swift.Int, cardId: Swift.Int, snacks: Swift.Array&lt;ViewLayerStudentProject.SnackRequest&gt;, onSuccess: (ViewLayerStudentProject.CheckOutVO) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FoodItemCountSheet&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.navigationBarBackButtonHidden(Swift.Bool) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.GrabABiteView.body.getter : some"
                   moduleName = "ViewLayerStudentProject"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/GrabABiteView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "1866">
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "3365">
                </Location>
                <Location
-                  uuid = "128110A4-7D50-4319-A8BD-10C037DD71AD - 6ec29eba8a9a1911"
+                  uuid = "174D7D6F-5FED-460C-A46A-3693CECD6965 - a92ea339666d06a7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;ViewLayerStudentProject.CheckOutResponse, Alamofire.AFError&gt;) -&gt; () in ViewLayerStudentProject.MovieDataAgentImpl.fetchCheckOut(token: Swift.String, timeslotId: Swift.Int, seatNumber: Swift.Array&lt;Swift.String&gt;, bookingDate: Swift.String, movieId: Swift.Int, cardId: Swift.Int, snacks: Swift.Array&lt;ViewLayerStudentProject.SnackRequest&gt;, onSuccess: (ViewLayerStudentProject.CheckOutVO) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FoodItemCountSheet&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.navigationBarBackButtonHidden(Swift.Bool) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.GrabABiteView.body.getter : some"
                   moduleName = "ViewLayerStudentProject"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/GrabABiteView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "332">
+                  startingLineNumber = "134"
+                  endingLineNumber = "134"
+                  offsetFromSymbolStart = "71">
+               </Location>
+               <Location
+                  uuid = "174D7D6F-5FED-460C-A46A-3693CECD6965 - a92ea339666d0646"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FoodItemCountSheet&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, &lt;&lt;opaque return type of SwiftUI.View.navigationBarBackButtonHidden(Swift.Bool) -&gt; some&gt;&gt;.0)&gt; in ViewLayerStudentProject.GrabABiteView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/GrabABiteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "133"
+                  endingLineNumber = "133"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -494,72 +541,40 @@
             filePath = "ViewLayerStudentProject/page/PaymentPageVeiw.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "259"
-            endingLineNumber = "259"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "body"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "31CFB94F-528E-4214-BBFC-F6C6B92544AA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "fetchCheckOut(token:timeslotId:seatNumber:bookingDate:movieId:cardId:snacks:onSuccess:onFailure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7158799D-E3DE-4A85-AAC5-F672127243F0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "fetchCheckOut(token:timeslotId:seatNumber:bookingDate:movieId:cardId:snacks:onSuccess:onFailure:)"
-            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7158799D-E3DE-4A85-AAC5-F672127243F0 - f7a70d0fda817bee"
+                  uuid = "0F473F19-4CF8-46F1-AEFF-C4652E08A90D - dc142db04f7d64b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ViewLayerStudentProject.MovieDataAgentImpl.fetchCheckOut(token: Swift.String, timeslotId: Swift.Int, seatNumber: Swift.Array&lt;Swift.String&gt;, bookingDate: Swift.String, movieId: Swift.Int, cardId: Swift.Int, snacks: Swift.Array&lt;ViewLayerStudentProject.SnackRequest&gt;, onSuccess: (ViewLayerStudentProject.CheckOutVO) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (ViewLayerStudentProject.PaymentTypeVO) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;ViewLayerStudentProject.PaymentTypeVO&gt;, Swift.Optional&lt;Swift.Int&gt;, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;)&gt; in ViewLayerStudentProject.PaymentListSectionView.body.getter : some"
                   moduleName = "ViewLayerStudentProject"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/PaymentPageVeiw.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "136"
-                  endingLineNumber = "136"
-                  offsetFromSymbolStart = "1392">
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "85">
                </Location>
                <Location
-                  uuid = "7158799D-E3DE-4A85-AAC5-F672127243F0 - f7a70d0fda817bee"
+                  uuid = "0F473F19-4CF8-46F1-AEFF-C4652E08A90D - dc142db04f7d5aa"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ViewLayerStudentProject.MovieDataAgentImpl.fetchCheckOut(token: Swift.String, timeslotId: Swift.Int, seatNumber: Swift.Array&lt;Swift.String&gt;, bookingDate: Swift.String, movieId: Swift.Int, cardId: Swift.Int, snacks: Swift.Array&lt;ViewLayerStudentProject.SnackRequest&gt;, onSuccess: (ViewLayerStudentProject.CheckOutVO) -&gt; (), onFailure: (Swift.String) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (ViewLayerStudentProject.PaymentTypeVO) -&gt; &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.ForEach&lt;Swift.Array&lt;ViewLayerStudentProject.PaymentTypeVO&gt;, Swift.Optional&lt;Swift.Int&gt;, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0&gt;)&gt; in ViewLayerStudentProject.PaymentListSectionView.body.getter : some"
                   moduleName = "ViewLayerStudentProject"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/network/dataAgents/MovieDataAgentImpl.swift"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/PaymentPageVeiw.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "136"
-                  endingLineNumber = "136"
-                  offsetFromSymbolStart = "1823">
+                  startingLineNumber = "286"
+                  endingLineNumber = "286"
+                  offsetFromSymbolStart = "148">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -574,10 +589,343 @@
             filePath = "ViewLayerStudentProject/page/CheckOutView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "D0D6E0F7-283C-465F-9723-3F3001489CB9 - 2d7ab6c6b94454f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.ScrollView&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, ViewLayerStudentProject.TicketCancelationPolicyView)&gt; in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "2700">
+               </Location>
+               <Location
+                  uuid = "D0D6E0F7-283C-465F-9723-3F3001489CB9 - a5aa5a7b4669a40c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.ScrollView&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, ViewLayerStudentProject.TicketCancelationPolicyView)&gt; in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "71">
+               </Location>
+               <Location
+                  uuid = "D0D6E0F7-283C-465F-9723-3F3001489CB9 - a5aa5a7b4669a46d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.ScrollView&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, ViewLayerStudentProject.TicketCancelationPolicyView)&gt; in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "129"
+                  endingLineNumber = "129"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB71473E-502C-4745-B1FF-9EFC2282A060"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "88E8B71E-A371-4FB6-8B8C-EBF86AFC0621"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/TimeSlotScreenView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C249F15-423D-492F-8846-76189EA4F365"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/components/CinemaAndTimeSlotsItem.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC12CF8D-4E2E-47D3-A73C-B71F9C7519A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/components/CinemaAndTimeSlotsItem.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B435C4CA-E8BC-4629-A439-EF7C1D9AF9C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/CheckOutView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B435C4CA-E8BC-4629-A439-EF7C1D9AF9C2 - fbcf9968830d1374"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in ViewLayerStudentProject.CheckOutAppbarView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "1604">
+               </Location>
+               <Location
+                  uuid = "B435C4CA-E8BC-4629-A439-EF7C1D9AF9C2 - 3ba66d9e7a12fed6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in ViewLayerStudentProject.CheckOutAppbarView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "B435C4CA-E8BC-4629-A439-EF7C1D9AF9C2 - 3ba66d9e7a12fe90"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in ViewLayerStudentProject.CheckOutAppbarView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F866F34-C49F-42E2-B905-0AD4CAE77F2A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/CheckOutView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6F866F34-C49F-42E2-B905-0AD4CAE77F2A - fc957d4eee182776"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, Swift.Int, Swift.String, Swift.Int) -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.MovieTitleSectionView, ViewLayerStudentProject.CinemaPlaceScreenView, ViewLayerStudentProject.DateTimePlaceCombineView, ViewLayerStudentProject.NumberOfTicketSectionView, ViewLayerStudentProject.TicketInfoSectionView, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FoodAndBeverageTitleView, ViewLayerStudentProject.FoodListView, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(ViewLayerStudentProject.DashedLineView, ViewLayerStudentProject.ConvenienceFeeTitleView, ViewLayerStudentProject.TicketPolicySectionView, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FinalTotalView)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.ScrollView&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, ViewLayerStudentProject.TicketCancelationPolicyView)&gt; in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "1150">
+               </Location>
+               <Location
+                  uuid = "6F866F34-C49F-42E2-B905-0AD4CAE77F2A - fc957d4eee182776"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, Swift.Int, Swift.String, Swift.Int) -&gt; () in closure #2 () -&gt; SwiftUI.TupleView&lt;(ViewLayerStudentProject.MovieTitleSectionView, ViewLayerStudentProject.CinemaPlaceScreenView, ViewLayerStudentProject.DateTimePlaceCombineView, ViewLayerStudentProject.NumberOfTicketSectionView, ViewLayerStudentProject.TicketInfoSectionView, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FoodAndBeverageTitleView, ViewLayerStudentProject.FoodListView, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(ViewLayerStudentProject.DashedLineView, ViewLayerStudentProject.ConvenienceFeeTitleView, ViewLayerStudentProject.TicketPolicySectionView, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, ViewLayerStudentProject.FinalTotalView)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, SwiftUI.ScrollView&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.cornerRadius(_: CoreGraphics.CGFloat, antialiased: Swift.Bool) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, ViewLayerStudentProject.TicketCancelationPolicyView)&gt; in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "1200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D38C481-3A33-4826-AD63-F7B41B78789F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/CheckOutView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "5D38C481-3A33-4826-AD63-F7B41B78789F - d05b944614d1e225"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "1474">
+               </Location>
+               <Location
+                  uuid = "5D38C481-3A33-4826-AD63-F7B41B78789F - c8b7718f0a5a5d48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.Int) -&gt; () in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "143">
+               </Location>
+               <Location
+                  uuid = "5D38C481-3A33-4826-AD63-F7B41B78789F - c8b7718f0a5a5da7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 (Swift.Int) -&gt; () in ViewLayerStudentProject.CheckOutView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/CheckOutView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "154"
+                  endingLineNumber = "154"
+                  offsetFromSymbolStart = "534">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD142681-3176-4AE1-893E-696D339C2EDF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ViewLayerStudentProject/page/TicketInformationConfirmView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "BD142681-3176-4AE1-893E-696D339C2EDF - 1395961c995f6b47"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, ViewLayerStudentProject.TicketResultView, ViewLayerStudentProject.BookingSuccesView)&gt; in ViewLayerStudentProject.TicketInformationConfirmView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TicketInformationConfirmView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "25">
+               </Location>
+               <Location
+                  uuid = "BD142681-3176-4AE1-893E-696D339C2EDF - 1395961c995f6b60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Color, ViewLayerStudentProject.TicketResultView, ViewLayerStudentProject.BookingSuccesView)&gt; in ViewLayerStudentProject.TicketInformationConfirmView.body.getter : some"
+                  moduleName = "ViewLayerStudentProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liangshiyi/Desktop/March/ViewLayerStudentProject/ViewLayerStudentProject/page/TicketInformationConfirmView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

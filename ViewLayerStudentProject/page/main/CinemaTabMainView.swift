@@ -12,6 +12,8 @@ struct CinemaTabMainView: View {
     let data: [DropdownItemVO] = dropDownData
     @State var searchValue = ""
     @State var placeholder = "search the movie"
+    @State var movieId: Int = 0
+    @State var onTapMovie: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -35,7 +37,7 @@ struct CinemaTabMainView: View {
                         .padding([.leading,.top], MARGIN_MEDIUM_2)
                         .zIndex(MARGIN_XBIG)
                         // grid view section
-                        MovieGridView(sectionName: "", movies: [MovieVO]())
+                        MovieGridView(movieId: $movieId, onTapMovie: $onTapMovie, mMovies: [MovieVO]())
                             .buttonStyle(.plain)
                             .padding(.top, MARGIN_XBIG - MARGIN_MEDIUM)
                     }

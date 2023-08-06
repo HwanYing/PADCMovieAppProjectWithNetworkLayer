@@ -13,54 +13,57 @@ struct MovieListScreenView: View {
     
     @State var currentSelection = NOW_PLAYING_MOVIE
     @State var showDetails = false
-    @Binding var region: String
     @State var bannerMovies: [MovieVO]? = nil
     @State var movieList: [MovieVO]? = nil
-    
-    var body: some View {
-        
-        NavigationStack {
-            ZStack {
-                Color(BG_COLOR)
-                
-                VStack{
-                    // App Bar
-                    AppBarView(region: $region)
-                    
-                    ScrollView{
-                        // Banner View
-                        MovieBannerView(bannerMovies: bannerMovies, onTapMovie: {
-                            
-                        })
-                        
-                        // Movie Selection
-                        MovieSelectionView(selection: $currentSelection)
-                            .onChange(of: currentSelection) { newValue in
-                                if (newValue == "Now Playing") {
-                                    self.getMoviesByType(type: "current")
-                                } else if (newValue == "Coming Soon"){
-                                    self.getMoviesByType(type: "comingsoon")
-                                }
-                            }
-                        
-                        // Movie Grid Section
-                        MovieGridView(sectionName: currentSelection, movies: movieList)
-                            .padding(.top, MARGIN_MEDIUM_2)
-                        
-                    }
-                    .padding(.bottom, MARGIN_XBIG)
-                }
-                
-            }
-            .edgesIgnoringSafeArea([.top, .bottom])
-            .onAppear(){
-                requestBannerData()
-            }
-            .navigationDestination(for: MovieVO.self) { movie in
-                AboutNSMovieView(movieId: movie.id, section: currentSelection, cityName: region)
-        }
-        }
+    @State var movieId: Int = 0
+    @State var onTapMovie: Bool = false
+    @Binding var region: String
 
+    var body: some View {
+        ZStack {
+            Color(BG_COLOR)
+            
+            VStack{
+                // App Bar
+                AppBarView(region: $region)
+                
+                ScrollView{
+                    // Banner View
+                    MovieBannerView(bannerMovies: bannerMovies, onTapMovie: {
+                        
+                    })
+                    
+                    // Movie Selection
+                    MovieSelectionView(selection: $currentSelection)
+                        .onChange(of: currentSelection) { newValue in
+                            if (newValue == "Now Playing") {
+                                self.getMoviesByType(type: "current")
+                            } else if (newValue == "Coming Soon"){
+                                self.getMoviesByType(type: "comingsoon")
+                            }
+                        }
+                    
+                    // Movie Grid Section
+                    MovieGridView(movieId: $movieId, onTapMovie: $onTapMovie, sectionName: currentSelection, mMovies: movieList)
+                        .padding(.top, MARGIN_MEDIUM_2)
+                    
+                }
+                .padding(.bottom, MARGIN_XBIG)
+            }
+            
+        }
+        .edgesIgnoringSafeArea([.top, .bottom])
+        .onAppear(){
+            requestBannerData()
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $onTapMovie, destination: {
+            AboutNSMovieView(movieId: self.movieId, section: currentSelection, cityName: region)
+        })
+//        .navigationDestination(for: MovieVO.self) { movie in
+//            AboutNSMovieView(movieId: movie.id, section: currentSelection, cityName: region)
+//        }
+        
     }
     func requestBannerData() {
         mModel.getBannerMovies { movies in
@@ -79,7 +82,7 @@ struct MovieListScreenView: View {
         } onFailure: { error in
             debugPrint(error)
         }
-
+        
     }
 }
 
@@ -185,7 +188,7 @@ struct MovieBannerView: View {
             .tabViewStyle(.page)
             .frame(height: BANNER_HEIGHT)
         }
-      
+        
     }
 }
 

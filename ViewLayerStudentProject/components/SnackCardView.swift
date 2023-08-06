@@ -38,7 +38,7 @@ struct SnackCardView: View {
                     .padding([.top,.leading], MARGIN_MEDIUM_2)
                 
                 // Snack price
-                Text("\(snackItems?.price ?? 0)KS")
+                Text("\(snackItems?.price ?? 0)000 KS")
                     .font(.system(size: MARGIN_CARD_MEDIUM_2))
                     .foregroundColor(Color(PRIMARY_COLOR))
                     .fontWeight(.semibold)

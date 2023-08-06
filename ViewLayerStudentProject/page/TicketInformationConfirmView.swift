@@ -9,11 +9,11 @@ import SwiftUI
 
 struct TicketInformationConfirmView: View {
     
-    @State var ticketCount = 1
-    
+    @Environment(\.presentationMode) var presentationMode
     var movieTitle: String?
+    var ticketCount: Int?
     var place: String?
-    var ticketName: String?
+    var ticketResult: CheckOutVO?
     var date: String?
     var startTime: String?
     var posterImageLink: String?
@@ -24,7 +24,9 @@ struct TicketInformationConfirmView: View {
             Color(BG_COLOR)
             
             // Ticket result section
-            TicketResultView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketName: ticketName, date: date, startTime: startTime, posterImageLink: posterImageLink)
+            TicketResultView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketResult: ticketResult, date: date, startTime: startTime, posterImageLink: posterImageLink){
+
+            }
             
             // booking success image
             BookingSuccesView()
@@ -32,6 +34,9 @@ struct TicketInformationConfirmView: View {
         }
         .edgesIgnoringSafeArea([.top,.bottom])
         .navigationBarBackButtonHidden(true)
+        .onAppear(){
+            print("Poster image ===> \(posterImageLink ?? "")")
+        }
     }
 }
 
@@ -158,9 +163,12 @@ struct MovieInfoSectionOneView: View {
 
 struct DoneButtonView: View {
     
+    var onTapDoneBtn: () -> Void?
+    
     var body: some View {
         Button(action: {
             // TODO: Go To Root Main ScreenView
+            onTapDoneBtn()
         }, label: {
             Text(DONE_BTN_LABEL)
                 .font(.system(size: MARGIN_MEDIUM_4))
@@ -180,10 +188,11 @@ struct TicketResultView: View {
     var ticketCount: Int?
     var movieTitle: String?
     var place: String?
-    var ticketName: String?
+    var ticketResult: CheckOutVO?
     var date: String?
     var startTime: String?
     var posterImageLink: String?
+    var onTapDoneBtn: () -> Void = {}
     
     var body: some View {
         VStack(alignment: .center,spacing: 0.0) {
@@ -195,7 +204,7 @@ struct TicketResultView: View {
                 .padding(.top, MARGIN_XBIG - MARGIN_SMALL)
             
             // movie info section
-            MovieInfoSectionOneView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketName: ticketName, date: date, startTime: startTime, posterImageLink: posterImageLink)
+            MovieInfoSectionOneView(ticketCount: ticketCount, movieTitle: movieTitle, place: place, ticketName: ticketResult?.seat, date: date, startTime: startTime, posterImageLink: posterImageLink)
             
             QRGeneratorView(text: "Hello World")
                 .padding(.top, MARGIN_XBIG - MARGIN_MEDIUM_2)
@@ -217,8 +226,10 @@ struct TicketResultView: View {
             .padding(.bottom, MARGIN_LARGE)
             
             // Done btn
-            DoneButtonView()
-            
+            DoneButtonView(){
+                onTapDoneBtn()
+            }
+               
             Spacer()
             
         }
@@ -237,9 +248,9 @@ struct TicketConfirmImageView: View {
             case .success(let image):
                 image
                     .resizable()
-                    .frame(minWidth: 0, idealWidth: BOOKING_RESULT_IMG_WIDTH, maxWidth: BOOKING_RESULT_IMG_WIDTH, minHeight: 0, idealHeight: BOOKING_RESULT_IMG_HEIGHT, maxHeight: BOOKING_RESULT_IMG_HEIGHT)
+                    .frame(width: BOOKING_RESULT_IMG_WIDTH, height: BOOKING_RESULT_IMG_HEIGHT)
                     .cornerRadius(MARGIN_SMALL)
-                    .clipped()
+//                    .clipped()
             case .failure:
                 Image(systemName: "exclamationmark.icloud")
             @unknown default:

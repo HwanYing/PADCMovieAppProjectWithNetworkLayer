@@ -15,7 +15,10 @@ struct PaymentPageVeiw: View {
     @State var text: String = ""
     @State var width = CGFloat.zero
     @State var labelWidth = CGFloat.zero
-    
+    @State var checkOutResult: CheckOutVO? = nil
+    @State var date1: String = ""
+    @State var time = ""
+
     @Environment(\.dismiss) var dismiss
     
     @State var paymentList: [PaymentTypeVO]? = nil
@@ -32,6 +35,7 @@ struct PaymentPageVeiw: View {
     var movieTitle: String?
     var snackTotalPrice: Int?
     var posterImageLink: String?
+    var place: String?
     
     @State var snackRequests: [SnackRequest] = []
     @State var snackPrice: [Int: Int] = [:]
@@ -55,21 +59,24 @@ struct PaymentPageVeiw: View {
                     .padding(.top, MARGIN_XLARGE)
                 
                 // payment section
-                PaymentListSectionView(paymentList: paymentList, isGoForCheckOut: $isGoForCheckOut, paymentTypeId: $paymentTypeId)
+                PaymentListSectionView(paymentList: paymentList, isGoForCheckOut: $isGoForCheckOut, paymentTypeId: $paymentTypeId){ payId in
+                    self.paymentTypeId = payId
+                    self.fetchCheckOut(cardId: self.paymentTypeId)
+                }
                 
                 Spacer()
             }
         }
         .edgesIgnoringSafeArea([.top, .bottom])
         .navigationBarBackButtonHidden(true)
-        .fullScreenCover(isPresented: $isGoForCheckOut, content: {
-           
-            CheckOutView(timeslotId: self.timeslotId, seatNumber: self.seatNumber, seatPrice: self.seatPrice, bookingDate: self.bookingDate, movieId: self.movieId, cardId: self.paymentTypeId, snacks: self.snackRequests, movieTitle: self.movieTitle, snackTotalPrice: self.snackTotalPrice, snackList: self.snackList, posterImagelink: self.posterImageLink)
+        .navigationDestination(isPresented: $isGoForCheckOut, destination: {
+            TicketInformationConfirmView(movieTitle: self.movieTitle, ticketCount: self.seatNumber?.count, place: checkOutResult?.bookingNo, ticketResult: self.checkOutResult, date: self.date1, startTime: self.time, posterImageLink: self.posterImageLink)
         })
         .onAppear(){
             requestData()
             createSnackRequest()
         }
+
     }
     
     func requestData() {
@@ -80,7 +87,25 @@ struct PaymentPageVeiw: View {
         }
 
     }
-    
+    func fetchCheckOut(cardId: Int) {
+        mModel.fetchCheckOut(timeslotId: self.timeslotId ?? 0, seatNumber: self.seatNumber ?? [], bookingDate: self.bookingDate ?? "", movieId: self.movieId ?? 0, cardId: cardId, snacks: self.snackRequests) { result in
+            
+            self.checkOutResult = result
+            
+            print("Date \(checkOutResult?.bookingDate ?? "")")
+            print("start time \(checkOutResult?.timeslot?.startTime ?? "")")
+            
+            self.date1 = checkOutResult?.bookingDate ?? ""
+            self.time = checkOutResult?.timeslot?.startTime ?? ""
+            
+            self.isGoForCheckOut = true
+
+        } onFailure: { error in
+            print(error)
+        }
+        
+    }
+
     func createSnackRequest() {
         
        let selectedSnacks = snackList?.map({ snack in
@@ -243,7 +268,8 @@ struct PaymentListSectionView: View {
     var paymentList: [PaymentTypeVO]?
     @Binding var isGoForCheckOut: Bool
     @Binding var paymentTypeId: Int
-    
+    var onTapPaymentType: ((Int) -> Void)?
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0.0) {
             Text(PAYMENT_SECTION_TITLE)
@@ -256,7 +282,9 @@ struct PaymentListSectionView: View {
                         .padding(.top, MARGIN_MEDIUM_1)
                         .onTapGesture {
                             self.paymentTypeId = item.id ?? 0
-                            self.isGoForCheckOut = true
+//                            self.isGoForCheckOut = true
+                            guard let onTapPaymentType = onTapPaymentType else { return }
+                            onTapPaymentType(self.paymentTypeId)
                         }
 
             }

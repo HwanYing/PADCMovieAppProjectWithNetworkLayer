@@ -13,7 +13,7 @@ struct TabBarView: View {
     @Binding var region: String
     
     var body: some View {
-        NavigationStack {
+//        NavigationStack {
             ZStack {
                 // Background Color
                 Color(BG_COLOR)
@@ -52,7 +52,7 @@ struct TabBarView: View {
             .navigationBarBackButtonHidden(true)
         }
     }
-}
+//}
 
 struct TabBarView_Previews: PreviewProvider {
     static var previews: some View {

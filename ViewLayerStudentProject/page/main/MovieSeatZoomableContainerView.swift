@@ -46,6 +46,7 @@ struct MovieSeatZoomableContainerView: View {
             
             // Color Explanatin View
             SeatColorView()
+                .padding(.top, MARGIN_MEDIUM)
             
             // Slider
             SliderView(zoomLevel: $zoomLevel, offset: $offset)
@@ -160,7 +161,7 @@ struct TicketPriceAndBuyTicketBtnView: View {
                     .foregroundColor(.white)
                     .fontWeight(.semibold)
                 
-                Text("\(totalPrice) Ks")
+                Text("\(totalPrice)000 Ks")
                     .font(.system(size: MARGIN_MEDIUM_4))
                     .fontWeight(.semibold)
                     .foregroundColor(Color(PRIMARY_COLOR))
